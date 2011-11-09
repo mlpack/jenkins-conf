@@ -13,12 +13,8 @@ rm -rf $REPORT_DIR/*
 echo "Finding test Binaries"
 TEST_BINS=$(find $TEST_DIR -iname "*_test")
 
-echo "Copy test_data_3_1000.csv to current working directory"
-cp ./*/src/mlpack/methods/neighbor_search/test_data_3_1000.csv .
-
-echo "Copy CSV files for NBC test to current working directory"
-cp ./*/src/mlpack/methods/naive_bayes/*.csv .
-cp ./*/src/mlpack/methods/mog/fake.csv .
+echo "Copy CSV files for tests to current working directory"
+cp ./*/src/mlpack/tests/data/* .
 
 echo "Running All Tests:"
 for ML_TEST in ${TEST_BINS}
