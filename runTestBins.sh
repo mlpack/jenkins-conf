@@ -30,7 +30,8 @@ do
    BOOST_BASENAME=$(basename $BOOST_TEST)
    echo "Found boost_$BOOST_BASENAME"
    #mv $BOOST_TEST $REPORT_DIR/boost_$BOOST_BASENAME
-   cat $BOOST_TEST | tr -cd  $XML_REGEX > $REPORT_DIR/boost_$BOOST_BASENAME
+   # Split tags into lines.
+   cat $BOOST_TEST | sed 's/>/>\n/g' | tr -cd  $XML_REGEX > $REPORT_DIR/boost_$BOOST_BASENAME
 done
 
 echo "Cleaning up working directory"
