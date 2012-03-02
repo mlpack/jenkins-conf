@@ -16,6 +16,9 @@ TEST_BINS=$(find $TEST_DIR -iname "*_test")
 echo "Copy CSV files for tests to current working directory"
 cp ./*/src/mlpack/tests/data/* .
 
+echo "Unpack mnist_first250_training_4s_and_9s.arm for sparse coding tests"
+tar -xvjpf mnist_first250_training_4s_and_9s.tar.bz2
+
 echo "Running All Tests:"
 for ML_TEST in ${TEST_BINS}
 do
