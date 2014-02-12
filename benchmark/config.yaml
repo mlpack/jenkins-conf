@@ -5,9 +5,10 @@ settings:
     timeout: 9000
     database: 'reports/benchmark.db'
     keepReports: 20
-    topChartColor: '#F3F3F3'
-    chartColor: '#FFFFFF'
-    textColor: '#6E6E6E'
+    topChartColor: '#000000'
+    chartColor: '#000000'
+    textColor: '#aaaaaa'
+    gridColor: '#ffff00'
 ---
 #  MLPACK:
 #  A Scalable C++  Machine Learning Library
