@@ -1,0 +1,525 @@
+# Block for general settings.
+library: general
+settings:
+  # A short timeout, since we want to run this nightly.
+  timeout: 1000
+  database: 'reports/benchmark.db'
+  # These shouldn't matter with the newer js interface.
+  keepReports: 20
+  bootstrap: 10
+  libraries: ['mlpack'] # Only mlpack in this configuration.
+  version: ['trunk']
+
+---
+library: mlpack
+methods:
+  ALLKNN:
+    run: ['timing']
+    script: methods/mlpack/allknn.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --single'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --single --cover_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --cover_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --cover_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --single --r_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --r_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --random_basis --seed 42'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --naive'
+
+  ALLKFN:
+    run: ['timing']
+    script: methods/mlpack/allkfn.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --single'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --single --cover_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --cover_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --cover_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --single --r_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --r_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --naive'
+
+  ALLKRANN:
+    run: ['timing']
+    script: methods/mlpack/allkrann.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --alpha 0.9'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --alpha 0.9 --tau 10'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --sample_at_leaves'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --sample_at_leaves --single'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --first_leaf_exact'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --first_leaf_exact --single'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --cover_tree'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '-k 3 --cover_tree --single'
+
+  DecisionStump:
+    run: ['timing']
+    script: methods/mlpack/decision_stump.py
+    format: [csv, txt]
+    datasets:
+      - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv'],
+                 ['datasets/optdigits_train.csv', 'datasets/optdigits_test.csv'] ]
+
+      - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv'],
+                 ['datasets/optdigits_train.csv', 'datasets/optdigits_test.csv'] ]
+        options: '-b 20'
+
+  DET:
+    run: ['timing']
+    script: methods/mlpack/det.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/iris.csv', 'datasets/cloud.csv',
+                ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'] ]
+
+      - files: ['datasets/iris.csv', 'datasets/cloud.csv',
+                ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'] ]
+        options: '-f 0'
+
+  EMST:
+    run: ['timing']
+    script: methods/mlpack/emst.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '--naive'
+
+      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
+                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
+        options: '--leaf_size 20'
+
+  FastMKS:
+    run: ['timing']
+    script: methods/mlpack/fastmks.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/optdigits.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '-k 3 --kernel linear'
+
+      - files: ['datasets/optdigits.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '-k 3 --kernel linear --single'
+
+      - files: ['datasets/optdigits.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '-k 3 --kernel gaussian'
+
+      - files: ['datasets/optdigits.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '-k 3 --kernel gaussian --single'
+
+      - files: ['datasets/optdigits.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '-k 3 --kernel polynomial --degree 2'
+
+      - files: ['datasets/optdigits.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '-k 3 --kernel polynomial --degree 2 --single'
+
+  GMM:
+    run: ['timing']
+    iteration: 5
+    script: methods/mlpack/gmm.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/iris.csv', 'datasets/wine.csv']
+        options: '--gaussians 3 --seed 42'
+
+      - files: ['datasets/iris.csv', 'datasets/wine.csv']
+        options: '--gaussians 3 --seed 42 --no_force_positive'
+
+      - files: ['datasets/iris.csv', 'datasets/wine.csv']
+        options: '--gaussians 3 --seed 42 --noise 0.1'
+
+      - files: ['datasets/iris.csv', 'datasets/wine.csv']
+        options: '--gaussians 3 --seed 42 --trials 20'
+
+      - files: ['datasets/iris.csv', 'datasets/wine.csv']
+        options: '--gaussians 3 --seed 42 --trials 20 --refined_start'
+
+      - files: ['datasets/optdigits.csv']
+        options: '--gaussians 10 --seed 42'
+
+      - files: ['datasets/optdigits.csv']
+        options: '--gaussians 10 --seed 42 --no_force_positive'
+
+      - files: ['datasets/optdigits.csv']
+        options: '--gaussians 10 --seed 42 --noise 0.1'
+
+      - files: ['datasets/optdigits.csv']
+        options: '--gaussians 10 --seed 42 --trials 20'
+
+      - files: ['datasets/optdigits.csv']
+        options: '--gaussians 10 --seed 42 --trials 20 --refined_start'
+
+  HMMTRAIN:
+    run: ['timing']
+    script: methods/mlpack/hmm_train.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/artificial_2DSignal.csv']
+        options: '--type gaussian --states 20 --seed 42'
+
+      - files: ['datasets/artificial_1DSignal.csv']
+        options: '--type discrete --states 20 --seed 42'
+
+  HMMGENERATE:
+    run: ['timing']
+    script: methods/mlpack/hmm_generate.py
+    format: [csv, txt, xml]
+    datasets:
+      - files: ['datasets/artificial_2DSignal_hmm.xml', 'datasets/artificial_1DSignal_hmm.xml']
+        options: '--length 10000'
+
+  HMMLOGLIK:
+    run: ['timing']
+    script: methods/mlpack/hmm_loglik.py
+    format: [csv, txt, xml]
+    datasets:
+      - files: [ ['datasets/artificial_2DSignal.csv', 'datasets/artificial_2DSignal_hmm.xml'],
+                 ['datasets/artificial_1DSignal.csv', 'datasets/artificial_1DSignal_hmm.xml'] ]
+
+  HMMVITERBI:
+    run: ['timing']
+    script: methods/mlpack/hmm_viterbi.py
+    format: [csv, txt, xml]
+    datasets:
+      - files: [ ['datasets/artificial_2DSignal.csv', 'datasets/artificial_2DSignal_hmm.xml'],
+                 ['datasets/artificial_1DSignal.csv', 'datasets/artificial_1DSignal_hmm.xml'] ]
+
+  KPCA:
+    run: ['timing']
+    script: methods/mlpack/kernel_pca.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel linear --new_dimensionality 2'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel gaussian --new_dimensionality 2'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel polynomial --degree 2 --new_dimensionality 2'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel hyptan --new_dimensionality 2'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel linear --new_dimensionality 2 --nystroem_method --sampling random'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel gaussian --new_dimensionality 2 --nystroem_method --sampling random'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel polynomial --degree 2 --new_dimensionality 2 --nystroem_method --sampling random'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel hyptan --degree 2 --new_dimensionality 2 --nystroem_method --sampling random'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel linear --new_dimensionality 2 --nystroem_method --sampling kmeans'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel gaussian --new_dimensionality 2 --nystroem_method --sampling kmeans'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel polynomial --degree 2 --new_dimensionality 2 --nystroem_method --sampling kmeans'
+
+      - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
+        options: '--kernel hyptan --degree 2 --new_dimensionality 2 --nystroem_method --sampling kmeans'
+
+  KMEANS:
+    run: ['timing']
+    script: methods/mlpack/kmeans.py
+    format: [csv, txt, arff]
+    datasets:
+      - files: ['datasets/cloud.csv', 'datasets/cloud_centroids.csv']
+        options: '--clusters 5'
+
+      - files: ['datasets/cloud.csv', 'datasets/cloud_centroids.csv']
+        options: '--clusters 5 --allow_empty_clusters'
+
+      - files: ['datasets/USCensus1990.csv', 'datasets/USCensus1990.csv']
+        options: '--clusters 6'
+
+      - files: ['datasets/USCensus1990.csv', 'datasets/USCensus1990.csv']
+        options: '--clusters 6 --allow_empty_clusters'
+
+  LARS:
+    run: ['timing']
+    script: methods/mlpack/lars.py
+    format: [csv, txt]
+    datasets:
+      - files: [ ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
+                 ['datasets/madelon_X.csv', 'datasets/madelon_y.csv'] ]
+        options: '--lambda1 0.01'
+
+      - files: [ ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
+                 ['datasets/madelon_X.csv', 'datasets/madelon_y.csv'] ]
+        options: '--lambda1 0.01 --lambda2 0.005'
+
+      - files: [ ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
+                 ['datasets/madelon_X.csv', 'datasets/madelon_y.csv'] ]
+        options: '--lambda1 0.01 --use_cholesky'
+
+      - files: [ ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
+                 ['datasets/madelon_X.csv', 'datasets/madelon_y.csv'] ]
+        options: '--lambda1 0.01 --lambda2 0.005 --use_cholesky'
+
+  LinearRegression:
+    run: ['timing']
+    script: methods/mlpack/linear_regression.py
+    format: [csv, txt]
+    datasets:
+      - files: [ ['datasets/diabetes_X.csv'], ['datasets/cosExp_X.csv'],
+                 ['datasets/madelon_train.csv', 'datasets/madelon_test.csv'] ]
+
+  LocalCoordinateCoding:
+    run: ['timing']
+    script: methods/mlpack/local_coordinate_coding.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/pendigits.csv']
+        options: '--atoms 12 --seed 42'
+
+      - files: ['datasets/pendigits.csv']
+        options: '--atoms 12 --seed 42 --normalize'
+
+      - files: ['datasets/pendigits.csv']
+        options: '--atoms 12 --seed 42 --normalize --lambda 0.1'
+
+  LSH:
+    run: ['timing']
+    script: methods/mlpack/lsh.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv', 'datasets/covtype.csv']
+        options: '-k 3 --seed 42'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv', 'datasets/covtype.csv']
+        options: '-k 3 --seed 42 --bucket_size 50'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv', 'datasets/covtype.csv']
+        options: '-k 3 --seed 42 --tables 40'
+
+  NBC:
+    run: ['timing']
+    script: methods/mlpack/nbc.py
+    format: [csv, txt]
+    datasets:
+      - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv'],
+                 ['datasets/transfusion_train.csv', 'datasets/transfusion_test.csv'],
+                 ['datasets/madelon_train.csv', 'datasets/madelon_test.csv'] ]
+
+      - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv'],
+                 ['datasets/transfusion_train.csv', 'datasets/transfusion_test.csv'],
+                 ['datasets/madelon_train.csv', 'datasets/madelon_test.csv'] ]
+        options: '--incremental_variance'
+
+  NCA:
+    run: ['timing']
+    script: methods/mlpack/nca.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/iris_train.csv',
+                ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
+                'datasets/wine.csv', 'datasets/optdigits.csv']
+        options: '--optimizer sgd --max_iterations 2000 --seed 42'
+
+      - files: ['datasets/iris_train.csv',
+                ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
+                'datasets/wine.csv', 'datasets/optdigits.csv']
+        options: '--optimizer lbfgs --max_iterations 2000 --seed 42'
+
+  NMF:
+    run: ['timing']
+    script: methods/mlpack/nmf.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/ionosphere.csv', 'datasets/piano_magnitude_spectogram.csv',
+                'datasets/optdigits.csv', 'datasets/isolet.csv']
+        options: '--rank 6 --seed 42 --update_rules multdist'
+
+      - files: ['datasets/ionosphere.csv', 'datasets/piano_magnitude_spectogram.csv',
+                'datasets/optdigits.csv', 'datasets/isolet.csv']
+        options: '--rank 6 --seed 42 --update_rules multdiv'
+
+      - files: ['datasets/ionosphere.csv', 'datasets/piano_magnitude_spectogram.csv',
+                'datasets/optdigits.csv', 'datasets/isolet.csv']
+        options: '--rank 6 --seed 42 --update_rules als'
+
+  PCA:
+    run: ['timing']
+    script: methods/mlpack/pca.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/iris.csv', 'datasets/wine.csv',
+                'datasets/cities.csv', 'datasets/diabetes_X.csv']
+
+      - files: ['datasets/iris.csv', 'datasets/wine.csv',
+                'datasets/cities.csv', 'datasets/diabetes_X.csv']
+        options: '--new_dimensionality 2'
+
+      - files: ['datasets/iris.csv', 'datasets/wine.csv',
+                'datasets/cities.csv', 'datasets/diabetes_X.csv']
+        options: '--var_to_retain 0.7 --scale'
+
+  PERCEPTRON:
+    run: ['timing']
+    script: methods/mlpack/perceptron.py
+    format: [csv, txt, arff]
+    datasets:
+      - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv', 'datasets/iris_labels.csv'],
+                       ['datasets/oilspill_train.csv', 'datasets/oilspill_test.csv', 'datasets/oilspill_labels.csv'],
+                       ['datasets/ecoli_train.csv', 'datasets/ecoli_test.csv', 'datasets/ecoli_labels.csv'] ]
+        options: '--iterations 10000'
+
+  RANGESEARCH:
+    run: ['timing']
+    script: methods/mlpack/range_search.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --single'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --single --cover_tree'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --cover_tree'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --naive'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --min 0.01'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --min 0.01 --single'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --min 0.01 --cover_tree'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --min 0.01 --single --cover_tree'
+
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
+                'datasets/corel-histogram.csv']
+        options: '--max 0.02 --min 0.01 --naive'
+
+  SparseCoding:
+    run: ['timing']
+    script: methods/mlpack/sparse_coding.py
+    format: [csv, txt]
+    datasets:
+      - files: ['datasets/pendigits.csv']
+        options: '--atoms 12 --seed 42 --max_iterations 100'
+
+      - files: ['datasets/pendigits.csv']
+        options: '--atoms 12 --seed 42'
+
+      - files: ['datasets/pendigits.csv']
+        options: '--atoms 12 --seed 42 --normalize'
+
+      - files: ['datasets/pendigits.csv']
+        options: '--atoms 12 --seed 42 --lambda1 0.01 --lambda2 0.005'
