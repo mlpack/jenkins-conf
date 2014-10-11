@@ -17,6 +17,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/allknn.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
                 'datasets/covtype.csv', 'datasets/corel-histogram.csv']
@@ -58,6 +59,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/allkfn.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
                 'datasets/covtype.csv', 'datasets/corel-histogram.csv']
@@ -95,6 +97,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/allkrann.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
                 'datasets/covtype.csv', 'datasets/corel-histogram.csv']
@@ -136,6 +139,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/decision_stump.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv'],
                  ['datasets/optdigits_train.csv', 'datasets/optdigits_test.csv'] ]
@@ -148,6 +152,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/det.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/iris.csv', 'datasets/cloud.csv',
                 ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'] ]
@@ -160,6 +165,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/emst.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
                 'datasets/covtype.csv', 'datasets/corel-histogram.csv']
@@ -176,6 +182,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/fastmks.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/optdigits.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv']
@@ -206,6 +213,7 @@ methods:
     iteration: 5
     script: methods/mlpack/gmm.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/iris.csv', 'datasets/wine.csv']
         options: '--gaussians 3 --seed 42'
@@ -241,6 +249,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/hmm_train.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/artificial_2DSignal.csv']
         options: '--type gaussian --states 20 --seed 42'
@@ -252,6 +261,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/hmm_generate.py
     format: [csv, txt, xml]
+    iteration: 2
     datasets:
       - files: ['datasets/artificial_2DSignal_hmm.xml', 'datasets/artificial_1DSignal_hmm.xml']
         options: '--length 10000'
@@ -260,6 +270,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/hmm_loglik.py
     format: [csv, txt, xml]
+    iteration: 2
     datasets:
       - files: [ ['datasets/artificial_2DSignal.csv', 'datasets/artificial_2DSignal_hmm.xml'],
                  ['datasets/artificial_1DSignal.csv', 'datasets/artificial_1DSignal_hmm.xml'] ]
@@ -268,6 +279,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/hmm_viterbi.py
     format: [csv, txt, xml]
+    iteration: 2
     datasets:
       - files: [ ['datasets/artificial_2DSignal.csv', 'datasets/artificial_2DSignal_hmm.xml'],
                  ['datasets/artificial_1DSignal.csv', 'datasets/artificial_1DSignal_hmm.xml'] ]
@@ -276,6 +288,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/kernel_pca.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/circle_data.csv', 'datasets/abalone.csv']
         options: '--kernel linear --new_dimensionality 2'
@@ -317,23 +330,25 @@ methods:
     run: ['timing']
     script: methods/mlpack/kmeans.py
     format: [csv, txt, arff]
+    iteration: 2
     datasets:
-      - files: ['datasets/cloud.csv', 'datasets/cloud_centroids.csv']
+      - files: [ ['datasets/cloud.csv', 'datasets/cloud_centroids.csv'] ]
         options: '--clusters 5'
 
-      - files: ['datasets/cloud.csv', 'datasets/cloud_centroids.csv']
+      - files: [ ['datasets/cloud.csv', 'datasets/cloud_centroids.csv'] ]
         options: '--clusters 5 --allow_empty_clusters'
 
-      - files: ['datasets/USCensus1990.csv', 'datasets/USCensus1990.csv']
+      - files: [ ['datasets/USCensus1990.csv', 'datasets/USCensus1990.csv'] ]
         options: '--clusters 6'
 
-      - files: ['datasets/USCensus1990.csv', 'datasets/USCensus1990.csv']
+      - files: [ ['datasets/USCensus1990.csv', 'datasets/USCensus1990.csv'] ]
         options: '--clusters 6 --allow_empty_clusters'
 
   LARS:
     run: ['timing']
     script: methods/mlpack/lars.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: [ ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
                  ['datasets/madelon_X.csv', 'datasets/madelon_y.csv'] ]
@@ -355,6 +370,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/linear_regression.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: [ ['datasets/diabetes_X.csv'], ['datasets/cosExp_X.csv'],
                  ['datasets/madelon_train.csv', 'datasets/madelon_test.csv'] ]
@@ -363,6 +379,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/local_coordinate_coding.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/pendigits.csv']
         options: '--atoms 12 --seed 42'
@@ -377,6 +394,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/lsh.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv', 'datasets/covtype.csv']
@@ -394,6 +412,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/nbc.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv'],
                  ['datasets/transfusion_train.csv', 'datasets/transfusion_test.csv'],
@@ -408,21 +427,23 @@ methods:
     run: ['timing']
     script: methods/mlpack/nca.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/iris_train.csv',
                 ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
                 'datasets/wine.csv', 'datasets/optdigits.csv']
-        options: '--optimizer sgd --max_iterations 2000 --seed 42'
+        options: '--optimizer sgd --max_iteration 2000 --seed 42'
 
       - files: ['datasets/iris_train.csv',
                 ['datasets/diabetes_X.csv', 'datasets/diabetes_y.csv'],
                 'datasets/wine.csv', 'datasets/optdigits.csv']
-        options: '--optimizer lbfgs --max_iterations 2000 --seed 42'
+        options: '--optimizer lbfgs --max_iteration 2000 --seed 42'
 
   NMF:
     run: ['timing']
     script: methods/mlpack/nmf.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/ionosphere.csv', 'datasets/piano_magnitude_spectogram.csv',
                 'datasets/optdigits.csv', 'datasets/isolet.csv']
@@ -440,6 +461,7 @@ methods:
     run: ['timing']
     script: methods/mlpack/pca.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/iris.csv', 'datasets/wine.csv',
                 'datasets/cities.csv', 'datasets/diabetes_X.csv']
@@ -456,16 +478,18 @@ methods:
     run: ['timing']
     script: methods/mlpack/perceptron.py
     format: [csv, txt, arff]
+    iteration: 2
     datasets:
       - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv', 'datasets/iris_labels.csv'],
-                       ['datasets/oilspill_train.csv', 'datasets/oilspill_test.csv', 'datasets/oilspill_labels.csv'],
-                       ['datasets/ecoli_train.csv', 'datasets/ecoli_test.csv', 'datasets/ecoli_labels.csv'] ]
-        options: '--iterations 10000'
+                 ['datasets/oilspill_train.csv', 'datasets/oilspill_test.csv', 'datasets/oilspill_labels.csv'],
+                 ['datasets/ecoli_train.csv', 'datasets/ecoli_test.csv', 'datasets/ecoli_labels.csv'] ]
+        options: '--iteration 10000'
 
   RANGESEARCH:
     run: ['timing']
     script: methods/mlpack/range_search.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv']
@@ -511,9 +535,10 @@ methods:
     run: ['timing']
     script: methods/mlpack/sparse_coding.py
     format: [csv, txt]
+    iteration: 2
     datasets:
       - files: ['datasets/pendigits.csv']
-        options: '--atoms 12 --seed 42 --max_iterations 100'
+        options: '--atoms 12 --seed 42 --max_iteration 100'
 
       - files: ['datasets/pendigits.csv']
         options: '--atoms 12 --seed 42'
