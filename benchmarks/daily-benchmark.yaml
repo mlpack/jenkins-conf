@@ -3,7 +3,7 @@ library: general
 settings:
   # A short timeout, since we want to run this nightly.
   timeout: 1000
-  database: 'reports/benchmark.db'
+  database: 'reports/benchmark-daily.db'
   # These shouldn't matter with the newer js interface.
   keepReports: 20
   bootstrap: 10
