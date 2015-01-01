@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Bash post-commit hook for subversion repository
-# triggers build on jenkis where reposititory is
+# triggers build on jenkins where reposititory is
 # checked out
 
 # 2011 Sterling Peet <sterling.peet@gatech.edu>
