@@ -37,10 +37,6 @@ methods:
 
       - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
                 'datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --cover_tree'
-
-      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
-                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
         options: '-k 3 --single --r_tree'
 
       - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
@@ -72,10 +68,6 @@ methods:
       - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
                 'datasets/covtype.csv', 'datasets/corel-histogram.csv']
         options: '-k 3 --single --cover_tree'
-
-      - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
-                'datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --cover_tree'
 
       - files: ['datasets/cloud.csv', 'datasets/isolet.csv',
                 'datasets/covtype.csv', 'datasets/corel-histogram.csv']
@@ -210,7 +202,6 @@ methods:
 
   GMM:
     run: ['timing']
-    iteration: 5
     script: methods/mlpack/gmm.py
     format: [csv, txt]
     iteration: 2
