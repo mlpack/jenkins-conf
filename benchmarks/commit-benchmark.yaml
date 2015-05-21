@@ -294,10 +294,10 @@ methods:
       - files: [ ['datasets/cloud.csv', 'datasets/cloud_centroids.csv'] ]
         options: '--clusters 5 --allow_empty_clusters'
 
-      - files: [ ['datasets/USCensus1990.csv', 'datasets/USCensus1990.csv'] ]
+      - files: [ ['datasets/USCensus1990.csv', 'datasets/USCensus1990_centroids.csv'] ]
         options: '--clusters 6'
 
-      - files: [ ['datasets/USCensus1990.csv', 'datasets/USCensus1990.csv'] ]
+      - files: [ ['datasets/USCensus1990.csv', 'datasets/USCensus1990_centroids.csv'] ]
         options: '--clusters 6 --allow_empty_clusters'
 
   LARS:
@@ -417,8 +417,7 @@ methods:
     format: [csv, txt]
     iteration: 1
     datasets:
-      - files: ['datasets/wine.csv', 'datasets/cloud.csv',
-                'datasets/corel-histogram.csv']
+      - files: ['datasets/wine.csv', 'datasets/cloud.csv']
         options: '--max 0.02'
 
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
