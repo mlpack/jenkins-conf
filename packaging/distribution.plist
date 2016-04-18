@@ -17,7 +17,7 @@
         <line choice="install"/>
     </choices-outline>
     
-    <choice id="install" visible="true" title="Install Rust" description="Install the Rust compiler, package manager and documentation."
+    <choice id="install" visible="true" title="Install mlpack" description="Install mlpack command-line programs, library and header files"
         customLocation="/usr/local">
         <pkg-ref id="org.mlpack.install"/>
     </choice>
