@@ -18,7 +18,7 @@ methods:
     run: ['timing', 'watch']
     watch: ['neighbor_search', 'neighbor_search_impl', 'neighbor_search_rules',
             'nearest_neighbor_rules_impl', 'ns_traversal_info', 'unmap',
-            'furthest_neighbor_sort', 'nearest_neighbor_sort']
+            'furthest_neighbor_sort', 'nearest_neighbor_sort', 'knn']
     script: methods/mlpack/allknn.py
     format: [csv, txt]
     iteration: 1
@@ -36,7 +36,7 @@ methods:
     run: ['timing', 'watch']
     watch: ['neighbor_search', 'neighbor_search_impl', 'neighbor_search_rules',
             'nearest_neighbor_rules_impl', 'ns_traversal_info', 'unmap',
-            'furthest_neighbor_sort', 'nearest_neighbor_sort']
+            'furthest_neighbor_sort', 'nearest_neighbor_sort', 'kfn']
     script: methods/mlpack/allkfn.py
     format: [csv, txt]
     iteration: 1
@@ -63,7 +63,8 @@ methods:
     run: ['timing', 'watch']
     watch: ['neighbor_search', 'neighbor_search_impl', 'neighbor_search_rules',
             'nearest_neighbor_rules_impl', 'ns_traversal_info', 'unmap',
-            'furthest_neighbor_sort', 'nearest_neighbor_sort']
+            'furthest_neighbor_sort', 'nearest_neighbor_sort', 'ra_model',
+            'ra_query', 'ra_search', 'ra_typedef', 'ra_util']
     script: methods/mlpack/allkrann.py
     format: [csv, txt]
     iteration: 1
@@ -110,7 +111,7 @@ methods:
 
   DET:
     run: ['timing', 'watch']
-    watch: ['dtree']
+    watch: ['dtree', 'dt_utils']
     script: methods/mlpack/det.py
     format: [csv, txt]
     iteration: 1
@@ -283,7 +284,8 @@ methods:
 
   KMEANS:
     run: ['timing', 'watch']
-    watch: ['max_variance_new_cluster', 'random_partition', 'refined_start', 'allow_empty_clusters']
+    watch: ['max_variance_new_cluster', 'random_partition', 'refined_start',
+            'allow_empty_clusters', 'sample_initialization']
     script: methods/mlpack/kmeans.py
     format: [csv, txt, arff]
     iteration: 1
@@ -367,7 +369,7 @@ methods:
     watch: ['amf', 'simple_residue_termination', 'simple_tolerance_termination',
             'validation_rmse_termination', 'incomplete_incremental_termination',
             'complete_incremental_termination', 'averge_init', 'random_acol_init',
-            'random_init']
+            'random_init', 'max_iteration_termination']
     script: methods/mlpack/nmf.py
     format: [csv, txt]
     iteration: 1
@@ -412,7 +414,7 @@ methods:
 
   RANGESEARCH:
     run: ['timing', 'watch']
-    watch: ['range_search']
+    watch: ['range_search', 'rs_model']
     script: methods/mlpack/range_search.py
     format: [csv, txt]
     iteration: 1
