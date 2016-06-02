@@ -27,10 +27,10 @@ methods:
         options: '-k 3'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --single_mode --cover_tree'
+        options: '-k 3 --single_mode --tree_type=cover'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --cover_tree'
+        options: '-k 3 --tree_type=cover'
 
   ALLKFN:
     run: ['timing', 'watch']
@@ -45,19 +45,19 @@ methods:
         options: '-k 3'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --single_mode --cover_tree'
+        options: '-k 3 --single_mode --tree_type=cover'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --cover_tree'
+        options: '-k 3 --tree_type=cover'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --cover_tree'
+        options: '-k 3 --tree_type=cover'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --single_mode --r_tree'
+        options: '-k 3 --single_mode --tree_type=r'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --r_tree'
+        options: '-k 3 --tree_type=r'
 
   ALLKRANN:
     run: ['timing', 'watch']
@@ -91,10 +91,10 @@ methods:
         options: '-k 3 --first_leaf_exact --single_mode'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --cover_tree'
+        options: '-k 3 --tree_type=cover'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --cover_tree --single_mode'
+        options: '-k 3 --tree_type=cover --single_mode'
 
   DecisionStump:
     run: ['timing', 'watch']
@@ -428,11 +428,11 @@ methods:
 
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv']
-        options: '--max 0.02 --single --cover_tree'
+        options: '--max 0.02 --single --tree_type=cover'
 
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv']
-        options: '--max 0.02 --cover_tree'
+        options: '--max 0.02 --tree_type=cover'
 
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv']
@@ -448,11 +448,11 @@ methods:
 
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv']
-        options: '--max 0.02 --min 0.01 --cover_tree'
+        options: '--max 0.02 --min 0.01 --tree_type=cover'
 
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv']
-        options: '--max 0.02 --min 0.01 --single --cover_tree'
+        options: '--max 0.02 --min 0.01 --single --tree_type=cover'
 
       - files: ['datasets/wine.csv', 'datasets/cloud.csv',
                 'datasets/corel-histogram.csv']
