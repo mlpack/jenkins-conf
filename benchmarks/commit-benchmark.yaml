@@ -27,7 +27,7 @@ methods:
         options: '-k 3'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --single --cover_tree'
+        options: '-k 3 --single_mode --cover_tree'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
         options: '-k 3 --cover_tree'
@@ -45,7 +45,7 @@ methods:
         options: '-k 3'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --single --cover_tree'
+        options: '-k 3 --single_mode --cover_tree'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
         options: '-k 3 --cover_tree'
@@ -54,7 +54,7 @@ methods:
         options: '-k 3 --cover_tree'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --single --r_tree'
+        options: '-k 3 --single_mode --r_tree'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
         options: '-k 3 --r_tree'
@@ -82,19 +82,19 @@ methods:
         options: '-k 3 --sample_at_leaves'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --sample_at_leaves --single'
+        options: '-k 3 --sample_at_leaves --single_mode'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
         options: '-k 3 --first_leaf_exact'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --first_leaf_exact --single'
+        options: '-k 3 --first_leaf_exact --single_mode'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
         options: '-k 3 --cover_tree'
 
       - files: ['datasets/covtype.csv', 'datasets/corel-histogram.csv']
-        options: '-k 3 --cover_tree --single'
+        options: '-k 3 --cover_tree --single_mode'
 
   DecisionStump:
     run: ['timing', 'watch']
