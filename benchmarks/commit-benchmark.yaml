@@ -15,7 +15,7 @@ settings:
 library: mlpack
 methods:
   ALLKNN:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['neighbor_search', 'neighbor_search_impl', 'neighbor_search_rules',
             'nearest_neighbor_rules_impl', 'ns_traversal_info', 'unmap',
             'furthest_neighbor_sort', 'nearest_neighbor_sort', 'knn']
@@ -33,7 +33,7 @@ methods:
         options: '-k 3 --tree_type=cover'
 
   ALLKFN:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['neighbor_search', 'neighbor_search_impl', 'neighbor_search_rules',
             'nearest_neighbor_rules_impl', 'ns_traversal_info', 'unmap',
             'furthest_neighbor_sort', 'nearest_neighbor_sort', 'kfn']
@@ -60,7 +60,7 @@ methods:
         options: '-k 3 --tree_type=r'
 
   ALLKRANN:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['neighbor_search', 'neighbor_search_impl', 'neighbor_search_rules',
             'nearest_neighbor_rules_impl', 'ns_traversal_info', 'unmap',
             'furthest_neighbor_sort', 'nearest_neighbor_sort', 'ra_model',
@@ -97,7 +97,7 @@ methods:
         options: '-k 3 --tree_type=cover --single_mode'
 
   DecisionStump:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/decision_stump.py
     format: [csv, txt]
     iteration: 1
@@ -110,7 +110,7 @@ methods:
         options: '-b 20'
 
   DET:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['dtree', 'dt_utils']
     script: methods/mlpack/det.py
     format: [csv, txt]
@@ -124,7 +124,7 @@ methods:
         options: '-f 0'
 
   EMST:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['dtb', 'edge_pair', 'union_find']
     script: methods/mlpack/emst.py
     format: [csv, txt]
@@ -139,7 +139,7 @@ methods:
         options: '--leaf_size 20'
 
   FastMKS:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/fastmks.py
     format: [csv, txt]
     iteration: 1
@@ -163,7 +163,7 @@ methods:
         options: '-k 3 --kernel polynomial --degree 2 --single'
 
   GMM:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['diagonal_constraint', 'eigenvalue_ratio_constraint',
             'em_fit', 'no_constraint', 'positive_definite_constraint']
     script: methods/mlpack/gmm.py
@@ -201,7 +201,7 @@ methods:
         options: '--gaussians 10 --seed 42 --trials 20 --refined_start'
 
   HMMTRAIN:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/hmm_train.py
     format: [csv, txt]
     iteration: 1
@@ -213,7 +213,7 @@ methods:
         options: '--type discrete --states 20 --seed 42'
 
   HMMGENERATE:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/hmm_generate.py
     format: [csv, txt, xml]
     iteration: 1
@@ -222,7 +222,7 @@ methods:
         options: '--length 10000'
 
   HMMLOGLIK:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/hmm_loglik.py
     format: [csv, txt, xml]
     iteration: 1
@@ -231,7 +231,7 @@ methods:
                  ['datasets/artificial_1DSignal.csv', 'datasets/artificial_1DSignal_hmm.xml'] ]
 
   HMMVITERBI:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/hmm_viterbi.py
     format: [csv, txt, xml]
     iteration: 1
@@ -240,7 +240,7 @@ methods:
                  ['datasets/artificial_1DSignal.csv', 'datasets/artificial_1DSignal_hmm.xml'] ]
 
   KPCA:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['naive_method', 'nystroem_method']
     script: methods/mlpack/kernel_pca.py
     format: [csv, txt]
@@ -283,7 +283,7 @@ methods:
         options: '--kernel hyptan --degree 2 --new_dimensionality 2 --nystroem_method --sampling kmeans'
 
   KMEANS:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['max_variance_new_cluster', 'random_partition', 'refined_start',
             'allow_empty_clusters', 'sample_initialization']
     script: methods/mlpack/kmeans.py
@@ -303,7 +303,7 @@ methods:
         options: '--clusters 6 --allow_empty_clusters'
 
   LARS:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/lars.py
     format: [csv, txt]
     iteration: 1
@@ -325,7 +325,7 @@ methods:
         options: '--lambda1 0.01 --lambda2 0.005 --use_cholesky'
 
   LinearRegression:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/linear_regression.py
     format: [csv, txt]
     iteration: 1
@@ -334,7 +334,7 @@ methods:
                  ['datasets/madelon_train.csv', 'datasets/madelon_test.csv'] ]
 
   LocalCoordinateCoding:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['lcc']
     script: methods/mlpack/local_coordinate_coding.py
     format: [csv, txt]
@@ -350,7 +350,7 @@ methods:
         options: '--atoms 12 --seed 42 --normalize --lambda 0.1'
 
   LSH:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/lsh.py
     format: [csv, txt]
     iteration: 1
@@ -365,7 +365,7 @@ methods:
         options: '-k 3 --seed 42 --tables 40'
 
   NMF:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['amf', 'simple_residue_termination', 'simple_tolerance_termination',
             'validation_rmse_termination', 'incomplete_incremental_termination',
             'complete_incremental_termination', 'averge_init', 'random_acol_init',
@@ -384,7 +384,7 @@ methods:
         options: '--rank 6 --seed 42 --update_rules als'
 
   PCA:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     script: methods/mlpack/pca.py
     format: [csv, txt]
     iteration: 1
@@ -401,7 +401,7 @@ methods:
         options: '--var_to_retain 0.7 --scale'
 
   PERCEPTRON:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['simple_weight_update', 'random_init', 'zero_init']
     script: methods/mlpack/perceptron.py
     format: [csv, txt, arff]
@@ -413,7 +413,7 @@ methods:
         options: '--iteration 1000'
 
   RANGESEARCH:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['range_search', 'rs_model']
     script: methods/mlpack/range_search.py
     format: [csv, txt]
@@ -459,7 +459,7 @@ methods:
         options: '--max 0.02 --min 0.01 --naive'
 
   SparseCoding:
-    run: ['timing', 'watch']
+    run: ['metric', 'watch']
     watch: ['data_dependent_random_initializer', 'nothing_initializer',
             'random_initializer', 'sparse_coding']
     script: methods/mlpack/sparse_coding.py
