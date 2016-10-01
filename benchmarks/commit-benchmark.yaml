@@ -3,7 +3,10 @@ library: general
 settings:
   # A short timeout, since we want to run this nightly.
   timeout: 1000
-  database: 'reports/commit.db'
+  databaseHost: 'mlpack.org'
+  port: 3306
+  database: 'benchmark_commit'
+  driver : 'mysql'
   # These shouldn't matter with the newer js interface.
   keepReports: 20
   bootstrap: 10
