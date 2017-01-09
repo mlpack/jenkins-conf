@@ -474,7 +474,7 @@ methods:
       - files: [ ['datasets/iris_train.csv', 'datasets/iris_test.csv', 'datasets/iris_labels.csv'],
                  ['datasets/oilspill_train.csv', 'datasets/oilspill_test.csv', 'datasets/oilspill_labels.csv'],
                  ['datasets/ecoli_train.csv', 'datasets/ecoli_test.csv', 'datasets/ecoli_labels.csv'] ]
-        options: '--iteration 10000'
+        options: '--max_iterations 10000'
 
   RANGESEARCH:
     run: ['timing']
