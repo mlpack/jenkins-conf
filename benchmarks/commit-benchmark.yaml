@@ -482,7 +482,7 @@ methods:
         options: '--atoms 12 --seed 42 --lambda1 0.01 --lambda2 0.005'
 
   MLP_FORWARD:
-      run: ['metric']
+      run: ['metric', 'watch']
       watch: ['ffn', 'linear', 'base_layer', 'log_softmax', 'visitor']
       iteration: 3
       script: methods/mlpack/mlp_forward.py
@@ -492,7 +492,7 @@ methods:
             options: '--input_size=50000 --hidden_size=5000 --output_size=100'
 
   MLP_BACKWARD:
-      run: ['metric']
+      run: ['metric', 'watch']
       watch: ['ffn', 'linear', 'base_layer', 'log_softmax', 'visitor']
       iteration: 3
       script: methods/mlpack/mlp_backward.py
