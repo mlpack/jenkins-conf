@@ -480,3 +480,23 @@ methods:
 
       - files: ['datasets/pendigits.csv']
         options: '--atoms 12 --seed 42 --lambda1 0.01 --lambda2 0.005'
+
+  MLP_FORWARD:
+      run: ['metric']
+      watch: ['ffn', 'linear', 'base_layer', 'log_softmax', 'visitor']
+      iteration: 3
+      script: methods/mlpack/mlp_forward.py
+      format: [csv, txt]
+      datasets:
+          - files: ['None']
+            options: '--input_size=50000 --hidden_size=5000 --output_size=100'
+
+  MLP_BACKWARD:
+      run: ['metric']
+      watch: ['ffn', 'linear', 'base_layer', 'log_softmax', 'visitor']
+      iteration: 3
+      script: methods/mlpack/mlp_backward.py
+      format: [csv, txt]
+      datasets:
+          - files: ['None']
+            options: '--input_size=50000 --hidden_size=5000 --output_size=100'
