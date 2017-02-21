@@ -3,7 +3,7 @@
 # Options
 TEST_DIR="build/bin"
 REPORT_DIR="reports/tests"
-TEST_OPTS="--report_level=detailed --log_level=test_suite --log_format=xml"
+TEST_OPTS="--report_level=detailed --log_level=test_suite --log_format=XML"
 XML_REGEX="[:print:]"
 
 echo "Wipe out old reports"
