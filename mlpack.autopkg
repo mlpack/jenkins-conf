@@ -2,12 +2,13 @@ nuget{
 	nuspec{
 		id=mlpack;
 		version: ${BUILD};
-        licenseUrl: "https://github.com/mlpack/mlpack/blob/master/LICENSE.txt";
-        iconUrl: "http://www.mlpack.org/mlpack.png";
-        projectUrl: "https://github.com/mlpack/mlpack";
-        title: "mlpack: a scalable C++ machine learning library";
-        description: "mlpack is an intuitive, fast, scalable C++ machine learning library, meant to be a machine learning analog to LAPACK. It aims to implement a wide array of machine learning methods and functions as a "swiss army knife" for machine learning researchers.";
-        summary: "Bugs Fixed";
+		licenseUrl: "https://github.com/mlpack/mlpack/blob/master/LICENSE.txt";
+		iconUrl: "http://www.mlpack.org/mlpack.png";
+		projectUrl: "https://github.com/mlpack/mlpack";
+		title: "mlpack: a scalable C++ machine learning library";
+		description: "mlpack is an intuitive, fast, scalable C++ machine learning library, meant to be a machine learning analog to LAPACK. It aims to implement a wide array of machine learning methods and functions as a "swiss army knife" for machine learning researchers.";
+		summary: "Bugs Fixed";
+		releaseNotes: "";
 		authors: {Ryan Curtin};
 		copyright: "Copyright (c) 2007-2017, mlpack contributors";
 		tags: {native, nativepackage, mlpack, windows};
