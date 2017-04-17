@@ -1,0 +1,41 @@
+nuget{
+	nuspec{
+		id=mlpack;
+		version: ${BUILD};
+        licenseUrl: "https://github.com/mlpack/mlpack/blob/master/LICENSE.txt";
+        iconUrl: "http://www.mlpack.org/mlpack.png";
+        projectUrl: "https://github.com/mlpack/mlpack";
+        title: "mlpack: a scalable C++ machine learning library";
+        description: "mlpack is an intuitive, fast, scalable C++ machine learning library, meant to be a machine learning analog to LAPACK. It aims to implement a wide array of machine learning methods and functions as a "swiss army knife" for machine learning researchers.";
+        summary: "Bugs Fixed";
+		authors: {Ryan Curtin};
+		copyright: "Copyright (c) 2007-2017, mlpack contributors";
+		tags: {native, nativepackage, mlpack, windows};
+	}
+	dependencies {
+		packages : {
+			OpenBLAS/0.2.14.1,
+			armadillo-code/7.800.2,
+			boost/1.60.0,
+			boost_unit_test_framework-vc140/1.60.0,
+			boost_program_options-vc140/1.60.0,
+			boost_random-vc140/1.60.0,
+			boost_serialization-vc140/1.60.0,
+			boost_math_c99-vc140/1.60.0
+		};
+	}
+	files{
+		nestedInclude:{
+			#destination = ${d_include}mlpack;
+			"build/include/**/*.hpp"
+		};
+		[x64]{
+			lib: "build/release/mlpack.lib";
+			my_bin: {
+				#destination:${d_bin}/.;
+				#add-each-file : ::nuget.[default]targets.[${condition}].CopyToOutput;
+				"build/release/mlpack.dll"
+			};
+		}
+	}
+}
