@@ -2,8 +2,20 @@
 FROM ubuntu:latest
 
 #Installing dependencies required to run mlpack
-RUN apt-get update && apt-get install -y wget libboost-math-dev libboost-program-options-dev libboost-test-dev libboost-serialization-dev libarmadillo-dev binutils-dev cmake build-essential git
+RUN apt-get update && apt-get install -y wget libboost-math-dev \
+    libboost-program-options-dev libboost-test-dev libboost-serialization-dev \
+    libarmadillo-dev binutils-dev cmake build-essential git \
+    && rm -rf /var/lib/apt/lists/*
 
+#creating a non-root user
+RUN adduser --system --no-create-home --disabled-password --disabled-login \
+    --shell /bin/sh mlpack
+
+#Hardening the containers by unsetting all SUID tags
+RUN for i in `find / -perm 6000 -type f`; do chmod a-s $i; done
+
+#Setting up non-root user
+USER mlpack
 
 # # The following commands can be run to build and test different versions of mlpack 
 # #changing work dir to make the mlpack project in /opt directory
