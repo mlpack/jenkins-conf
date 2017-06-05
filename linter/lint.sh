@@ -34,9 +34,13 @@ cd "$root"
 
 # Get all files for the style check and exclude external files and run
 # cpplint and convert the output.
-find ./src/mlpack/core \
+find ./src/mlpack \
 ! -path "*/src/mlpack/core/arma_extend/*" \
 ! -path "*/src/mlpack/core/boost_backport/*" \
+! -path "*src/mlpack/bindings/matlab/*" \
+! -path "*src/mlpack/core/core.hpp" \
+! -path "*src/mlpack/methods/ann/visitor/*" \
+! -path "*src/mlpack/prereqs.hpp" \
 -print0 -iname '*.[hc]pp' -type f | \
 xargs -0 python "$linter"/cpplint.py --extensions=hpp,cpp --filter=\
 -whitespace/braces,\
