@@ -41,6 +41,7 @@ find ./src/mlpack \
 ! -path "*src/mlpack/core/core.hpp" \
 ! -path "*src/mlpack/methods/ann/visitor/*" \
 ! -path "*src/mlpack/prereqs.hpp" \
+! -path "*src/mlpack/core.hpp" \
 -print0 -iname '*.[hc]pp' -type f | \
 xargs -0 python "$linter"/cpplint.py --extensions=hpp,cpp --filter=\
 -whitespace/braces,\
