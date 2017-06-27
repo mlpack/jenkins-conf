@@ -22,18 +22,9 @@ ADD armadillo-code /armadillo-code
 WORKDIR armadillo-code
 RUN cmake . && make && make install && rm -rf /armadillo-code
 
-# Installing Boost from source
-ADD boost_1_49_0 /boost_1_49_0
-WORKDIR /boost_1_49_0
-RUN ./bootstrap.sh --prefix=/usr \
-    --with-libraries=math,program_options,serialization,test && ./b2 install
-
 # Creating a non-root user.
 RUN adduser --system --disabled-password --disabled-login \
    --shell /bin/sh mlpack
-
-# Giving permissions to user mlpack.
-RUN chmod -R ugo+rw /usr && chown -R mlpack /usr
 
 # Hardening the containers by unsetting all SUID tags
 RUN for i in `find / -perm 6000 -type f`; do chmod a-s $i; done
@@ -43,6 +34,18 @@ WORKDIR /home/mlpack/
 
 # Setting up non-root user.
 USER mlpack
+
+# Installing boost from source 
+RUN wget --no-check-certificate \
+    "http://masterblaster.mlpack.org:5005/boost_1_49_0.tar.gz" \
+    && tar xvzf boost_1_49_0.tar.gz
+WORKDIR boost_1_49_0
+RUN ./bootstrap.sh --prefix=/usr \
+    --with-libraries=math,program_options,serialization,test && ./b2
+ENV BOOST_ROOT=/home/mlpack/boost_1_49_0
+
+# Changing work directory again.
+WORKDIR /home/mlpack
 
 # The following commands can be run to build and test different versions of
 # The following commands can be run to build and test different versions of
