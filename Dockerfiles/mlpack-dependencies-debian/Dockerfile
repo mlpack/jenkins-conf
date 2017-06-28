@@ -11,16 +11,31 @@ RUN apt-get update  && apt-get install -y aptitude && apt-get purge -y \
 
 # Installing dependencies required to run mlpack.
 RUN apt-get update  && apt-get install -y --no-install-recommends wget \
-    cmake binutils-dev make g++ txt2man git \
+    cmake binutils-dev make txt2man git build-essential \
     doxygen liblapack-dev libblas-dev libarpack2 libsuperlu-dev unzip  && \
     apt-get clean && rm -rf /usr/share/man/?? && rm -rf /usr/share/man/??_* && \
     rm -rf /var/lib/apt/lists/* && rm -rf /usr/share/locale/* && \
     rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/*
 
+#Installing gcc from source
+RUN wget --no-check-certificate\
+    "https://ftp.gnu.org/gnu/gcc/gcc-4.8.1/gcc-4.8.1.tar.gz" \
+    && tar xvzf gcc-4.8.1.tar.gz && rm -r gcc-4.8.1.tar.gz
+WORKDIR gcc-4.8.1
+RUN ./contrib/download_prerequisites && cd .. && mkdir objdir && cd objdir && \
+    $PWD/../gcc-4.8.1/configure --prefix=$PWD --enable-languages=c,c++,fortran \
+    --disable-multilib --disable-bootstrap && make && make install
+ENV PATH /objdir/bin/:$PATH
+RUN apt-get purge -y gcc && rm -rf /gcc-4.8.1
+
+
 # Installing armadillo via source-code.
-ADD armadillo-code /armadillo-code
-WORKDIR armadillo-code
-RUN cmake . && make && make install && rm -rf /armadillo-code
+WORKDIR /
+RUN wget --no-check-certificate \
+    "http://masterblaster.mlpack.org:5005/armadillo-4.600.5.tar.gz" \
+    && tar xvzf armadillo-4.600.5.tar.gz && rm -r armadillo-4.600.5.tar.gz
+WORKDIR armadillo-4.600.5
+RUN cmake . && make && make install && rm -rf /armadillo-4.600.5
 
 # Creating a non-root user.
 RUN adduser --system --disabled-password --disabled-login \
@@ -35,10 +50,10 @@ WORKDIR /home/mlpack/
 # Setting up non-root user.
 USER mlpack
 
-# Installing boost from source 
+# Installing boost from source
 RUN wget --no-check-certificate \
     "http://masterblaster.mlpack.org:5005/boost_1_49_0.tar.gz" \
-    && tar xvzf boost_1_49_0.tar.gz
+    && tar xvzf boost_1_49_0.tar.gz && rm -r boost_1_49_0.tar.gz
 WORKDIR boost_1_49_0
 RUN ./bootstrap.sh --prefix=/usr \
     --with-libraries=math,program_options,serialization,test && ./b2
@@ -62,4 +77,4 @@ WORKDIR /home/mlpack
 # Making the project.
 #RUN cmake  ../
 #RUN make
-#RUN bin/mlpack_test
+#RUN bin/mlpack_test    
