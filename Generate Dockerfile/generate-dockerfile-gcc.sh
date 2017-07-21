@@ -53,12 +53,16 @@ RUN ./bootstrap.sh  --prefix=/usr/  \
     --with-libraries=math,program_options,serialization,test
 RUN ./bjam install -j8
 
+EOF
+
+cat >> Dockerfile <<'EOF'
+
 # Creating a non-root user.
 RUN adduser --system --disabled-password --disabled-login \
    --shell /bin/sh mlpack
 
 # Hardening the containers by unsetting all SUID tags
-RUN for i in "find / -perm 6000 -type f"; do chmod a-s $i; done
+RUN for i in `find / -perm 6000 -type f`; do chmod a-s $i; done
 
 
 # Changing work directory again.

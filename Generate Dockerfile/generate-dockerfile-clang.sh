@@ -1,10 +1,8 @@
-
 #!/bin/bash
 
 arma_version=$1
 boost_version=$2
 llvm_version=$3
-
 cat > Dockerfile <<EOF
 
 # Using debian:stretch image as base-image.
@@ -47,13 +45,6 @@ RUN apt-get update && apt-get install -y liblapack-dev libblas-dev libarpack2 \
     libsuperlu-dev && cmake -DINSTALL_LIB_DIR=/usr/lib  . && make -j8 \
     && make install && rm -rf /$arma_version
 
-# Creating a non-root user.
-RUN adduser --system --disabled-password --disabled-login \
-   --shell /bin/sh mlpack
-
-# Hardening the containers by unsetting all SUID tags.
-RUN for i in "find / -perm 6000 -type f"; do chmod a-s $i; done
-
 # Installing boost from source.
 WORKDIR /
 RUN wget  \
@@ -64,6 +55,18 @@ ENV CC /usr/bin/clang
 RUN ./bootstrap.sh --with-toolset=clang --prefix=/usr/  \
     --with-libraries=math,program_options,serialization,test && \
     ./bjam install -j8 && rm -rf /$boost_version
+
+EOF
+
+cat >> Dockerfile <<'EOF'
+
+# Creating a non-root user.
+RUN adduser --system --disabled-password --disabled-login \
+   --shell /bin/sh mlpack
+
+# Hardening the containers by unsetting all SUID tags.
+RUN for i in `find / -perm 6000 -type f`; do chmod a-s $i; done
+
 
 # Changing work directory and user to mlpack.
 WORKDIR /home/mlpack
