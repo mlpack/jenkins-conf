@@ -58,6 +58,7 @@ xargs -0 python "$linter"/cpplint.py --extensions=hpp,cpp --filter=\
 -readability/multiline_string,\
 -runtime/explicit,\
 -runtime/int,\
+-runtime/string,\
 -runtime/references 2>&1 | \
 grep -v 'Missing spaces around <' | \
 grep -v 'Consider using rand_r' | \
