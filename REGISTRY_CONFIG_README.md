@@ -1,5 +1,9 @@
 A registry is running on masterblaster at port 5000.
 
+The registry is running inside a container. All the images and containers are stored in the /var/lib/docker on the host system (master). But, we have a symlink which points /var/lib/docker to /home/docker on our host system. 
+Inside the container, the repositories are stored in /var/lib/registry.
+
+
 To add an image to the registry, do the following steps:
 
 1. Tag the image to be pushed to the registry
