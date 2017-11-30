@@ -36,7 +36,7 @@ do
    cat $BOOST_TEST | sed 's/>/>\n/g' | tr -cd  $XML_REGEX > $REPORT_DIR/boost_$BOOST_BASENAME
 
    echo "Remove unsupported xml tags:"
-   ./xml_boost_test.py $REPORT_DIR/boost_$BOOST_BASENAME > $REPORT_DIR/tmp_boost_$BOOST_BASENAME
+   ./test-support/xml_boost_test.py $REPORT_DIR/boost_$BOOST_BASENAME > $REPORT_DIR/tmp_boost_$BOOST_BASENAME
    mv $REPORT_DIR/tmp_boost_$BOOST_BASENAME $REPORT_DIR/boost_$BOOST_BASENAME
 done
 
