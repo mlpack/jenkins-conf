@@ -35,9 +35,12 @@ do
    # Split tags into lines.
    cat $BOOST_TEST | sed 's/>/>\n/g' | tr -cd  $XML_REGEX > $REPORT_DIR/boost_$BOOST_BASENAME
 
-   echo "Remove unsupported xml tags:"
-   ./test-support/xml_boost_test.py $REPORT_DIR/boost_$BOOST_BASENAME > $REPORT_DIR/tmp_boost_$BOOST_BASENAME
-   mv $REPORT_DIR/tmp_boost_$BOOST_BASENAME $REPORT_DIR/boost_$BOOST_BASENAME
+   python=`which python`;
+   if [ $? -ne 1 ]; then
+     echo "Remove unsupported xml tags:"
+     ./test-support/xml_boost_test.py $REPORT_DIR/boost_$BOOST_BASENAME > $REPORT_DIR/tmp_boost_$BOOST_BASENAME
+     mv $REPORT_DIR/tmp_boost_$BOOST_BASENAME $REPORT_DIR/boost_$BOOST_BASENAME
+  fi
 done
 
 echo "Cleaning up working directory"
