@@ -19,7 +19,7 @@ RUN wget --no-check-certificate \
    cd objdir && \
    ../configure --prefix=/usr --enable-languages=c,c++,fortran \
      --disable-multilib --disable-bootstrap && \
-   make && \
+   make -j32 && \
    make install && \
    cd ../ && \
    rm -rf $gcc_version
@@ -31,7 +31,7 @@ RUN wget --no-check-certificate \
     rm -f $arma_version.tar.gz && \
     cd $arma_version && \
     cmake -DINSTALL_LIB_DIR=/usr/lib . && \
-    make && \
+    make -j32 && \
     make install && \
     cd .. && \
     rm -rf $arma_version
@@ -44,7 +44,7 @@ RUN wget --no-check-certificate \
     cd $boost_version && \
     ./bootstrap.sh --prefix=/usr/ \
         -with-libraries=math,program_options,serialization,test && \
-    ./bjam install && \
+    ./bjam install -j32 && \
     cd ../ && \
     rm -rf $boost_version
 WORKDIR $boost_version

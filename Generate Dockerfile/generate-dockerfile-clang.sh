@@ -17,7 +17,7 @@ RUN wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
     mkdir build && \
     cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=/usr ../ && \
-    make && \
+    make -j32 && \
     make install && \
     apt-get purge -y gcc && \
     cd .. && \
@@ -31,7 +31,7 @@ RUN wget --no-check-certificate \
     rm -f $arma_version.tar.gz && \
     cd $arma_version && \
     cmake -DINSTALL_LIB_DIR=/usr/lib/ . && \
-    make && \
+    make -j32 && \
     make install && \
     cd .. && \
     rm -rf $arma_version
@@ -46,7 +46,7 @@ RUN wget \
     cd $boost_version && \
     ./bootstrap.sh --with-toolset=clang --prefix=/usr/ \
         --with-libraries=math,program_options,serialization,test && \
-    ./bjam install && \
+    ./bjam install -j32 && \
     rm -f $boost_version/
 EOF
 
