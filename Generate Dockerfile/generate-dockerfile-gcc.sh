@@ -21,7 +21,7 @@ RUN wget --no-check-certificate \
      --disable-multilib --disable-bootstrap && \
    make -j32 && \
    make install && \
-   cd ../ && \
+   cd ../../ && \
    rm -rf $gcc_version
 
 # Installing armadillo via source-code.

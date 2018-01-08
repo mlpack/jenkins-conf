@@ -20,7 +20,7 @@ RUN wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
     make -j32 && \
     make install && \
     apt-get purge -y gcc && \
-    cd .. && \
+    cd ../../ && \
     rm -rf $llvm_version
 
 # Installing armadillo via source-code.
