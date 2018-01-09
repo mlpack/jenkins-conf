@@ -20,7 +20,6 @@ RUN apt-get update -qq && apt-get install -y python aptitude && \
     cmake -DCMAKE_INSTALL_PREFIX=/usr ../ && \
     make -j32 && \
     make install && \
-    apt-get purge -y gcc && \
     cd ../../ && \
     rm -rf $llvm_version && \
     apt-get purge -y $(aptitude search \
@@ -28,6 +27,7 @@ RUN apt-get update -qq && apt-get install -y python aptitude && \
          ~R~R~prequired!~R~pimportant!~R~R~pimportant!busybox!grub!initramfs-tools' \
       | awk '{print $2}' ) && apt-get purge -y aptitude python && \
     apt-get autoremove -y && apt-get clean && rm -rf /usr/share/man/?? && \
+    apt-get purge -y gcc && \
     rm -rf /usr/share/man/??_*
 
 # Installing boost from source.
