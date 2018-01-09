@@ -90,6 +90,7 @@ for line in data:
 
     # Assemble the test cases that should be checked.
     if testSuite != None:
+      includes.append(line)
       for x in changedFiles:
         if next((s for s in includes if x in s), None) != None:
           for y in testCases:
