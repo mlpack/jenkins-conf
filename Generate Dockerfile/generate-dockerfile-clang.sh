@@ -10,7 +10,7 @@ FROM mlpack-docker-base:latest
 
 # Installing clang from source.
 WORKDIR /
-RUN apt-get update -qq && apt-get install python aptitude && \
+RUN apt-get update -qq && apt-get install -y python aptitude && \
     wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
     tar xvf $llvm_version.tar.xz && \
     rm -f $llvm_version.tar.xz && \
