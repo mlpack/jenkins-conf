@@ -23,6 +23,18 @@ RUN wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
     cd ../../ && \
     rm -rf $llvm_version
 
+# Installing boost from source.
+WORKDIR /
+RUN wget \
+      http://masterblaster.mlpack.org:5005/$boost_version.tar.gz && \
+    tar xvzf $boost_version.tar.gz && \
+    rm -f $boost_version.tar.gz && \
+    cd $boost_version && \
+    ./bootstrap.sh --with-toolset=clang --prefix=/usr/ \
+        --with-libraries=math,program_options,serialization,test && \
+    ./bjam install -j32 && \
+    rm -f $boost_version/
+
 # Installing armadillo via source-code.
 WORKDIR /
 RUN wget --no-check-certificate \
@@ -35,19 +47,6 @@ RUN wget --no-check-certificate \
     make install && \
     cd .. && \
     rm -rf $arma_version
-
-
-# Installing boost from source.
-WORKDIR /
-RUN wget \
-      http://masterblaster.mlpack.org:5005/$boost_version.tar.gz && \
-    tar xvzf $boost_version.tar.gz && \
-    rm -f $boost_version.tar.gz && \
-    cd $boost_version && \
-    ./bootstrap.sh --with-toolset=clang --prefix=/usr/ \
-        --with-libraries=math,program_options,serialization,test && \
-    ./bjam install -j32 && \
-    rm -f $boost_version/
 EOF
 
 cat >> Dockerfile << 'EOF'

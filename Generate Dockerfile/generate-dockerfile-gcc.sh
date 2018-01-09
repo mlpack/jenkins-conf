@@ -24,18 +24,6 @@ RUN wget --no-check-certificate \
    cd ../../ && \
    rm -rf $gcc_version
 
-# Installing armadillo via source-code.
-RUN wget --no-check-certificate \
-    http://masterblaster.mlpack.org:5005/$arma_version.tar.gz && \
-    tar xvzf $arma_version.tar.gz && \
-    rm -f $arma_version.tar.gz && \
-    cd $arma_version && \
-    cmake -DINSTALL_LIB_DIR=/usr/lib . && \
-    make -j32 && \
-    make install && \
-    cd .. && \
-    rm -rf $arma_version
-
 # Installing boost from source
 RUN wget --no-check-certificate \
       "http://masterblaster.mlpack.org:5005/$boost_version.tar.gz" && \
@@ -49,6 +37,17 @@ RUN wget --no-check-certificate \
     rm -rf $boost_version
 WORKDIR $boost_version
 
+# Installing armadillo via source-code.
+RUN wget --no-check-certificate \
+    http://masterblaster.mlpack.org:5005/$arma_version.tar.gz && \
+    tar xvzf $arma_version.tar.gz && \
+    rm -f $arma_version.tar.gz && \
+    cd $arma_version && \
+    cmake -DINSTALL_LIB_DIR=/usr/lib . && \
+    make -j32 && \
+    make install && \
+    cd .. && \
+    rm -rf $arma_version
 EOF
 
 cat >> Dockerfile << 'EOF'
