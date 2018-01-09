@@ -10,7 +10,8 @@ FROM mlpack-docker-base:latest
 
 # Installing clang from source.
 WORKDIR /
-RUN wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
+RUN apt-get update -qq && apt-get install python aptitude && \
+    wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
     tar xvf $llvm_version.tar.xz && \
     rm -f $llvm_version.tar.xz && \
     cd $llvm_version && \
@@ -21,7 +22,13 @@ RUN wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
     make install && \
     apt-get purge -y gcc && \
     cd ../../ && \
-    rm -rf $llvm_version
+    rm -rf $llvm_version && \
+    apt-get purge -y $(aptitude search \
+        '~i!~M!~prequired!~pimportant!~R~prequired! \
+         ~R~R~prequired!~R~pimportant!~R~R~pimportant!busybox!grub!initramfs-tools' \
+      | awk '{print $2}' ) && apt-get purge -y aptitude python && \
+    apt-get autoremove -y && apt-get clean && rm -rf /usr/share/man/?? && \
+    rm -rf /usr/share/man/??_*
 
 # Installing boost from source.
 WORKDIR /
