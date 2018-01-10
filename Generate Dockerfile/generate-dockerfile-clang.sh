@@ -42,7 +42,7 @@ RUN wget \
         --with-libraries=math,program_options,serialization,test && \
     ./bjam install -j32 && \
     cd .. && \
-    rm -f $boost_version/
+    rm -rf $boost_version/
 
 # Installing armadillo via source-code.
 WORKDIR /
