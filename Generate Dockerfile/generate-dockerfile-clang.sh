@@ -30,7 +30,7 @@ RUN apt-get update -qq && apt-get install -y python aptitude && \
     apt-get autoremove -y && apt-get clean && rm -rf /usr/share/man/?? && \
     apt-get install -y libsuperlu-dev liblapack-dev libblas-dev && \
     apt-get purge -y gcc && \
-    rm -rf /var/lib/apt/lists/* && rm *rf /usr/share/locale/* && \
+    rm -rf /var/lib/apt/lists/* && rm -rf /usr/share/locale/* && \
     rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/* && \
     rm -rf /usr/share/man/??_*
 
