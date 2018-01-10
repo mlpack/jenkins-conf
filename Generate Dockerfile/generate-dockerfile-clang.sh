@@ -17,7 +17,8 @@ RUN apt-get update -qq && apt-get install -y python aptitude && \
     cd $llvm_version && \
     mkdir build && \
     cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/usr ../ && \
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DLLVM_TARGETS_TO_BUILD=X86 \
+        -DCMAKE_BUILD_TYPE=Release -DLLVM_OPTIMIZED_TABLEGEN=ON ../ && \
     make -j32 && \
     make install && \
     cd ../../ && \
@@ -40,6 +41,7 @@ RUN wget \
     ./bootstrap.sh --with-toolset=clang --prefix=/usr/ \
         --with-libraries=math,program_options,serialization,test && \
     ./bjam install -j32 && \
+    cd .. && \
     rm -f $boost_version/
 
 # Installing armadillo via source-code.

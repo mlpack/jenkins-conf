@@ -35,7 +35,6 @@ RUN wget --no-check-certificate \
     ./bjam install -j32 && \
     cd ../ && \
     rm -rf $boost_version
-WORKDIR $boost_version
 
 # Installing armadillo via source-code.
 RUN wget --no-check-certificate \
