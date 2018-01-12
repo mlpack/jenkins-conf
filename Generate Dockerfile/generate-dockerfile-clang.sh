@@ -10,7 +10,7 @@ FROM mlpack-docker-base:latest
 
 # Installing clang from source.
 WORKDIR /
-RUN apt-get update -qq && apt-get install -y python aptitude && \
+RUN apt-get update -qq && apt-get install -y python && \
     wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
     tar xvf $llvm_version.tar.xz && \
     rm -f $llvm_version.tar.xz && \
@@ -23,13 +23,8 @@ RUN apt-get update -qq && apt-get install -y python aptitude && \
     make install && \
     cd ../../ && \
     rm -rf $llvm_version && \
-    apt-get purge -y $(aptitude search \
-        '~i!~M!~prequired!~pimportant!~R~prequired! \
-         ~R~R~prequired!~R~pimportant!~R~R~pimportant!busybox!grub!initramfs-tools' \
-      | awk '{print $2}' ) && apt-get purge -y aptitude python && \
+    apt-get purge -y python && \
     apt-get autoremove -y && apt-get clean && rm -rf /usr/share/man/?? && \
-    apt-get purge -y gcc && \
-    apt-get install -y libsuperlu-dev liblapack-dev libblas-dev && \
     rm -rf /var/lib/apt/lists/* && rm -rf /usr/share/locale/* && \
     rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/* && \
     rm -rf /usr/share/man/??_*
