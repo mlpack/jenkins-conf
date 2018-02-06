@@ -40,9 +40,13 @@ for x in range(0, len(changedFiles)):
 
   if "_impl" in file:
     changedFiles.append(file.replace("_impl", ""))
+    changedFiles.append(file.replace("_impl.hpp", "_main.cpp"))
 
   if ".cpp" in file:
     changedFiles.append(file.replace(".cpp", ".hpp"))
+
+    if "main.cpp" not in file:
+      changedFiles.append(file.replace(".cpp", "_main.cpp"))
 
 changedFiles = list(set(changedFiles))
 
