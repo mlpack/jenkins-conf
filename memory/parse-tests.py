@@ -61,17 +61,21 @@ for line in data:
       testData = file.readlines()
     testData = [x.strip() for x in testData]
 
+
     testSuite = None;
     includes = [];
     testCases = [];
     for testLine in testData:
       testSuiteRegex = re.search('BOOST_AUTO_TEST_SUITE\((.*)\);', testLine)
+      testFixtureRegex = re.search('BOOST_FIXTURE_TEST_SUITE\((.*),', testLine)
       testCaseRegex = re.search('BOOST_AUTO_TEST_CASE\((.*)\)', testLine)
 
       includeRegex = re.search('#include <(.*)>', testLine)
 
       if testSuiteRegex != None:
         testSuite = testSuiteRegex.group(1)
+      elif testFixtureRegex != None:
+        testSuite = testFixtureRegex.group(1)
 
       if testCaseRegex != None:
         testCases.append(testCaseRegex.group(1))
