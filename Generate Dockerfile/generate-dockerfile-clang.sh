@@ -23,7 +23,7 @@ RUN apt-get update -qq && apt-get install -y python && \
     make install && \
     cd ../../ && \
     rm -rf $llvm_version && \
-    apt-get purge -y python && \
+    apt-get purge -y python gcc && \
     apt-get autoremove -y && apt-get clean && rm -rf /usr/share/man/?? && \
     rm -rf /var/lib/apt/lists/* && rm -rf /usr/share/locale/* && \
     rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/* && \
@@ -42,9 +42,15 @@ RUN wget \
     cd .. && \
     rm -rf $boost_version/
 
-# Installing armadillo via source-code.
+# Installing armadillo via source-code.  We have to manually reinstall BLAS and
+# LAPACK since they were purged with gcc.
 WORKDIR /
-RUN wget --no-check-certificate \
+RUN apt-get update -qq && apt-get install -y liblapack-dev libblas-dev libsuperlu-dev && \
+    apt-get autoremove -y && apt-get clean && rm -rf /usr/share/man/?? && \
+    rm -rf /var/lib/apt/lists/* && rm -rf /usr/share/locale/* && \
+    rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/* && \
+    rm -rf /usr/share/man/??_* && \
+    wget --no-check-certificate \
       "http://masterblaster.mlpack.org:5005/$arma_version.tar.gz" && \
     tar xvzf $arma_version.tar.gz && \
     rm -f $arma_version.tar.gz && \
