@@ -23,7 +23,7 @@ RUN apt-get update -qq && apt-get install -y python && \
     make install && \
     cd ../../ && \
     rm -rf $llvm_version && \
-    apt-get purge -y python gcc && \
+    apt-get purge -y python && apt-get remove -y gfortran gcc && \
     apt-get autoremove -y && apt-get clean && rm -rf /usr/share/man/?? && \
     rm -rf /var/lib/apt/lists/* && rm -rf /usr/share/locale/* && \
     rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/* && \
