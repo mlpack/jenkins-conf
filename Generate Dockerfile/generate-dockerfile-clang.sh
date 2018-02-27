@@ -24,7 +24,8 @@ RUN apt-get update -qq && apt-get install -y python && \
     cd ../../ && \
     rm -rf $llvm_version && \
     apt-get purge -y python && apt-get remove -y gfortran gcc && \
-    apt-get autoremove -y && apt-get clean && rm -rf /usr/share/man/?? && \
+    apt-get autoremove -y && apt-get install libstdc++-6-dev && \
+    apt-get clean && rm -rf /usr/share/man/?? && \
     rm -rf /var/lib/apt/lists/* && rm -rf /usr/share/locale/* && \
     rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/* && \
     rm -rf /usr/share/man/??_*
