@@ -39,6 +39,7 @@ find ./src/mlpack \
 ! -path "*/src/mlpack/core/boost_backport/*" \
 ! -path "*src/mlpack/bindings/matlab/*" \
 ! -path "*src/mlpack/core/core.hpp" \
+! -path "*src/mlpack/core/util/arma_config_check.hpp" \
 ! -path "*src/mlpack/methods/ann/visitor/*" \
 ! -path "*src/mlpack/prereqs.hpp" \
 ! -path "*src/mlpack/core.hpp" \
