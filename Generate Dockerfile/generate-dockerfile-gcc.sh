@@ -4,11 +4,14 @@ arma_version=$1
 boost_version=$2
 gcc_version=$3
 
+gcc_version_major=`echo ${gcc_version/gcc-} | sed 's/^\([0-9]\).*//'`;
+
 cat > Dockerfile << EOF
 # Using debian's latest image as base-image plus mlpack prereqs.
 FROM mlpack-docker-base:latest
 
-# Installing gcc from source.
+# Installing gcc from source.  On newer gcc versions than the system gcc, we
+# have to move all the libraries and bootstrap.
 RUN wget --no-check-certificate \
    https://ftp.gnu.org/gnu/gcc/$gcc_version/$gcc_version.tar.gz && \
    tar xvzf $gcc_version.tar.gz && \
@@ -17,10 +20,18 @@ RUN wget --no-check-certificate \
    ./contrib/download_prerequisites && \
    mkdir objdir && \
    cd objdir && \
-   ../configure --prefix=/usr --enable-languages=c,c++,fortran \
-     --disable-multilib --disable-bootstrap && \
+   if [ $gcc_version_major -gt 6 ]; then \
+     ../configure --prefix=/usr --enable-languages=c,c++,fortran \
+        --disable-multilib --enable-bootstrap \
+   else \
+     ../configure --prefix=/usr --enable-languages=c,c++,fortran \
+       --disable-multilib --disable-bootstrap \
+   fi && \
    make -j32 && \
    make install && \
+   if [ $gcc_version_major -gt 6 ]; then \
+     mv /usr/lib64/* /usr/lib/x86_64-linux-gnu/ \
+   fi && \
    cd ../../ && \
    rm -rf $gcc_version
 
