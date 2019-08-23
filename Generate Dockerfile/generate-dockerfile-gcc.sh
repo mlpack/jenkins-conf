@@ -22,15 +22,15 @@ RUN wget --no-check-certificate \
    cd objdir && \
    if [ $gcc_version_major -gt 6 ]; then \
      ../configure --prefix=/usr --enable-languages=c,c++,fortran \
-        --disable-multilib --enable-bootstrap \
+        --disable-multilib --enable-bootstrap; \
    else \
      ../configure --prefix=/usr --enable-languages=c,c++,fortran \
-       --disable-multilib --disable-bootstrap \
+       --disable-multilib --disable-bootstrap; \
    fi && \
    make -j32 && \
    make install && \
    if [ $gcc_version_major -gt 6 ]; then \
-     mv /usr/lib64/* /usr/lib/x86_64-linux-gnu/ \
+     mv /usr/lib64/* /usr/lib/x86_64-linux-gnu/; \
    fi && \
    cd ../../ && \
    rm -rf $gcc_version
