@@ -4,7 +4,7 @@ arma_version=$1
 boost_version=$2
 gcc_version=$3
 
-gcc_version_major=`echo ${gcc_version/gcc-} | sed 's/^\([0-9]\).*//'`;
+gcc_version_major=`echo ${gcc_version/gcc-} | sed 's/^\([0-9]\).*/\1/'`;
 
 cat > Dockerfile << EOF
 # Using debian's latest image as base-image plus mlpack prereqs.
