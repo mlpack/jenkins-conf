@@ -29,8 +29,10 @@ for line in lines:
         tt = float(line[start + 16:len(line) - 3]) * 0.001
       elif 'ms' in lineType:
         tt = float(line[start + 16:len(line) - 2]) * 0.001
-      else:
+      elif 'us' in lineType:
         tt = float(line[start + 16:len(line) - 2]) * 0.000001
+      else:
+        raise ValueError("Can't parse the given format: " + lineType)
 
     meta['duration'] += tt
 
