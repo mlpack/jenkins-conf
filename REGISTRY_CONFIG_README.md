@@ -1,4 +1,4 @@
-A registry is running on masterblaster at port 5000.
+A registry is running on http://masterblaster.mlpack.org at port 5000.
 
 To add an image to the registry, do the following steps:
 
