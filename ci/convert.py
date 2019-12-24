@@ -59,8 +59,11 @@ for key, value in meta.items():
       if info[2] == None:
         output += '\n        <testcase classname="' + info[0] + '" name="' + info[0] + '" time="' +  str("{:.5f}".format(info[1])) + '"/>'
       else:
+        failureMessageStart = info[2].find('":')
+        failureMessage = info[2][failureMessageStart + 3:]
+
         output += '\n        <testcase classname="' + info[0] + '" name="' + info[0] + '" time="' +  str("{:.5f}".format(info[1])) + '">'
-        output += '\n            <failure message="test failure">' +  escape(info[2]) + '</failure>'
+        output += '\n            <failure message="' + escape(failureMessage) + '">' +  escape(info[2]) + '</failure>'
         output += '\n        </testcase>'
 
     output += '\n    </testsuite>'
