@@ -16,6 +16,9 @@ echo "Running all tests."
 logfile=ensmallen.memcheck
 xmllogfile=ensmallen.xml
 
+# Copy data to the correct directory.
+cp -vr build/data/ data/
+
 # Run valgrind.
 valgrind --tool=memcheck --leak-check=full --track-origins=yes \
          --num-callers=40 --error-exitcode=1 --xml=yes --xml-file=$REPORT_DIR/$xmllogfile --log-file=$REPORT_DIR/$logfile \
