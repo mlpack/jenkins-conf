@@ -20,6 +20,9 @@ case $key in
     reports="$2"
     shift # past argument
     ;;
+    -d|--dir)
+    shift # past argument
+    ;;
     *)
           # unknown option
     ;;
@@ -34,7 +37,7 @@ cd "$root"
 
 # Get all files for the style check and exclude external files and run
 # cpplint and convert the output.
-find ./src/mlpack \
+find "$dir" \
 ! -path "*/src/mlpack/core/arma_extend/*" \
 ! -path "*/src/mlpack/core/boost_backport/*" \
 ! -path "*src/mlpack/bindings/matlab/*" \
