@@ -21,6 +21,7 @@ case $key in
     shift # past argument
     ;;
     -d|--dir)
+    dir="$2"
     shift # past argument
     ;;
     *)
