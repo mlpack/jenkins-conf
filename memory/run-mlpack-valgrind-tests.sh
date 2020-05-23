@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Options
-WORKER=6
+WORKER=1
 REPORT_DIR="reports/tests"
 CHANGED_FILES="filenames.txt"
 CMAKE_FILE="./src/mlpack/tests/CMakeLists.txt"

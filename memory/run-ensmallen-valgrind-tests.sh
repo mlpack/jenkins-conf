@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Options
-WORKER=6
+WORKER=1
 REPORT_DIR="reports/tests"
 CMAKE_FILE="./src/ensmallen/tests/CMakeLists.txt"
 TEST_PATH="./src/ensmallen/tests/"
