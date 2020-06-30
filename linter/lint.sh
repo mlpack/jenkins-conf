@@ -47,6 +47,7 @@ find "$dir" \
 ! -path "*src/mlpack/methods/ann/visitor/*" \
 ! -path "*src/mlpack/prereqs.hpp" \
 ! -path "*src/mlpack/core.hpp" \
+! -path "*src/mlpack/tests/catch.hpp" \
 -print0 -iname '*.[hc]pp' -type f | \
 xargs -0 python "$linter"/cpplint.py --extensions=hpp,cpp --filter=\
 -whitespace/braces,\
