@@ -16,7 +16,9 @@ whitelist = [("logistic_regression_main.cpp", "pointer was used after the memory
              ("drusilla_select_impl.hpp", "syntaxError"),
              ("em_fit_impl.hpp", "syntax error"),
              ("lmnn_function_impl.hpp", "syntax error"),
-             ("best_binary_numeric_split_impl.hpp", "syntax error")]
+             ("best_binary_numeric_split_impl.hpp", "syntax error"),
+             ("catch.hpp", "syntax error"),
+             ("callbacks_test.cpp", "Such expressions using the ',' operator are dangerous. Make sure the expression is correct.")]
 
 def check_whitelist_issue(line):
     for w in whitelist:
