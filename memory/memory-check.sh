@@ -13,5 +13,5 @@ cd build/
 valgrind --tool=memcheck --leak-check=full --track-origins=yes \
          --num-callers=40 --error-exitcode=1 --xml=yes --xml-file=$REPORT_DIR/$xmllogfile --log-file=$REPORT_DIR/$logfile \
          --verbose -- bin/mlpack_test --report_level=detailed --log_level=test_suite --log_format=XML -t $1 \
-        > $testxmlfile;
+        | tee $REPORT_DIR/$testxmlfile;
 cd ../
