@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TEST_DIR="build/bin"
-REPORT_DIR="reports/tests"
+REPORT_DIR="../reports/tests"
 
 # Replace '/' with '_' from test bin to create logfile.
 logfile=$(sed 's#/#_#g' <<<  $1).memcheck
