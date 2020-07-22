@@ -18,12 +18,15 @@ whitelist = [("logistic_regression_main.cpp", "pointer was used after the memory
              ("lmnn_function_impl.hpp", "syntax error"),
              ("best_binary_numeric_split_impl.hpp", "syntax error"),
              ("catch.hpp", "syntax error"),
-             ("callbacks_test.cpp", "Such expressions using the ',' operator are dangerous. Make sure the expression is correct."),
+             ("*", "Such expressions using the ',' operator are dangerous. Make sure the expression is correct."),
+             ("catch.hpp", "Such expressions using the ',' operator are dangerous. Make sure the expression is correct."),
              ("ra_search_impl.hpp", "syntax error")]
 
 def check_whitelist_issue(line):
     for w in whitelist:
         if w[0] in line and w[1] in line:
+            return True
+        elif w[0] == '*' and w[1] in line:
             return True
     return False
 
