@@ -21,4 +21,4 @@ xmllogfile=ensmallen.xml
 cp -vr build/data/ data/
 
 echo "Running all tests."
-cat testbins.txt | xargs -n 1 -P $WORKER -I % ./memory-check.sh %
+cat testbins.txt | xargs -n 1 -P $WORKER -I % ./ensmallen-memory-check.sh %
