@@ -3,7 +3,8 @@
 # Options
 WORKER=1
 REPORT_DIR="reports/tests"
-CMAKE_FILE="./src/ensmallen/tests/CMakeLists.txt"
+CMAKE_FILE="./tests/CMakeLists.txt"
+CHANGED_FILES="filenames.txt"
 
 echo "Wipe out old reports."
 mkdir -p $REPORT_DIR
