@@ -69,4 +69,4 @@ for testFile in testFiles:
         testSuites.append(testSuite)
 
 for testSuite in testSuites:
-  print('./ensmallen_tests "[' + testSuite + ']"')
+  print('"[' + testSuite + ']"')
