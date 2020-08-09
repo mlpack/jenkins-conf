@@ -17,6 +17,10 @@ changedFiles = []
 with open(filenamesFile, 'r') as f:
   changedFiles = f.readlines()
 
+# Remove 'ensmallen.hpp' from the list of changed files, so
+# we don't trigger all tests.
+changedFiles = list(filter(lambda i: 'ensmallen.hpp' not in i, changedFiles))
+
 # Clean the changed files: remove the path
 # and create trigger words.
 triggerWords = []
