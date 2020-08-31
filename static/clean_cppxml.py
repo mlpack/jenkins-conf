@@ -15,7 +15,12 @@ whitelist = [("logistic_regression_main.cpp", "pointer was used after the memory
              ("logistic_regression_main.cpp", "operator is called twice for deallocation of the same memory space"),
              ("*", "Such expressions using the &apos;,&apos; operator are dangerous. Make sure the expression is correct."),
              ("*", "syntax error"),
-             ("*", "syntaxError")]
+             ("*", "syntaxError"),
+             ("tree_test.cpp", "An object is used as an argument to its own method. Consider checking the first actual argument of the 'MaxDistance' function."),
+             ("tree_test.cpp", "An object is used as an argument to its own method. Consider checking the first actual argument of the 'MinDistance' function."),
+             ("tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound."),
+             ("ub_tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound."),
+             ("vantage_point_tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound.")]
 
 def check_whitelist_issue(line):
     for w in whitelist:
