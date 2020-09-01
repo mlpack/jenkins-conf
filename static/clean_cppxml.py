@@ -20,7 +20,8 @@ whitelist = [("logistic_regression_main.cpp", "pointer was used after the memory
              ("tree_test.cpp", "An object is used as an argument to its own method. Consider checking the first actual argument of the 'MinDistance' function."),
              ("tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound."),
              ("ub_tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound."),
-             ("vantage_point_tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound.")]
+             ("vantage_point_tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound."),
+             ("feedforward_network_test.cpp", "Memory leak: model")]
 
 def check_whitelist_issue(line):
     for w in whitelist:
