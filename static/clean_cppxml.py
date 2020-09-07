@@ -21,7 +21,8 @@ whitelist = [("logistic_regression_main.cpp", "pointer was used after the memory
              ("tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound."),
              ("ub_tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound."),
              ("vantage_point_tree_test.cpp", "Array overrun is possible. The 'i' index is pointing beyond array bound."),
-             ("feedforward_network_test.cpp", "Memory leak: model")]
+             ("feedforward_network_test.cpp", "Memory leak: model"),
+             ("bayesian_linear_regression_main.cpp", "The 'bayesLinReg' pointer was used after the memory was released.")]
 
 def check_whitelist_issue(line):
     for w in whitelist:
