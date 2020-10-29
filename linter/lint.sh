@@ -49,7 +49,7 @@ find "$dir" \
 ! -path "*src/mlpack/core.hpp" \
 ! -path "*src/mlpack/tests/catch.hpp" \
 ! -path "*src/mlpack/bindings/cli/third_party/CLI/CLI11.hpp" \
-| -path "*src/mlpack/bindings/R/mlpack/src/boost/*" \
+! -path "*src/mlpack/bindings/R/mlpack/src/boost/*" \
 -print0 -iname '*.[hc]pp' -type f | \
 xargs -0 python "$linter"/cpplint.py --extensions=hpp,cpp --filter=\
 -whitespace/braces,\
