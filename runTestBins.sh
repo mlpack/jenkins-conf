@@ -5,8 +5,8 @@ TEST_DIR="build/bin"
 TEST_OPTS="-r junit -o reports/tests/result.xml"
 
 echo "Wipe out old reports"
-mkdir -p $REPORT_DIR
-rm -rf $REPORT_DIR/*
+mkdir -p reports/tests/
+rm -rf reports/tests/*
 
 echo "Copy CSV files for tests to current working directory"
 cp ./*/src/mlpack/tests/data/* .
