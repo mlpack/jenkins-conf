@@ -69,6 +69,7 @@ def parse(filenamesFile, reportFile):
 
         # Write footer.
         f.write('''</errors>\n''')
+        f.write('''</cppcheck>\n''')
         f.write('''</results>\n''')
 
 if __name__ == '__main__':
