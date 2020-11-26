@@ -66,23 +66,15 @@ for line in data:
     testData = [x.strip() for x in testData]
 
 
-    testSuite = None;
     includes = [];
     testCases = [];
     for testLine in testData:
-      testSuiteRegex = re.search('BOOST_AUTO_TEST_SUITE\((.*)\);', testLine)
-      testFixtureRegex = re.search('BOOST_FIXTURE_TEST_SUITE\((.*),', testLine)
-      testCaseRegex = re.search('BOOST_AUTO_TEST_CASE\((.*)\)', testLine)
+      testCaseRegex = re.search('TEST_CASE\((.*)\)', testLine)
 
       includeRegex = re.search('#include <(.*)>', testLine)
 
-      if testSuiteRegex != None:
-        testSuite = testSuiteRegex.group(1)
-      elif testFixtureRegex != None:
-        testSuite = testFixtureRegex.group(1)
-
       if testCaseRegex != None:
-        testCases.append(testCaseRegex.group(1))
+        testCases.append(testCaseRegex.group(1).split(",")[0])
 
       if includeRegex != None:
 
@@ -97,12 +89,11 @@ for line in data:
           includes.append(includeRegex.group(1))
 
     # Assemble the test cases that should be checked.
-    if testSuite != None:
-      includes.append(line)
-      for x in changedFiles:
-        if next((s for s in includes if x in s), None) != None:
-          for y in testCases:
-            testSuites.append(testSuite + "/" + y)
+    includes.append(line)
+    for x in changedFiles:
+      if next((s for s in includes if x in s), None) != None:
+        for y in testCases:
+          testSuites.append(y)
 
           break;
 
