@@ -22,5 +22,8 @@ done
 echo "Running All Tests:"
 ./$TEST_DIR/mlpack_test $TEST_OPTS
 
+# Try to remove invalid tag that JUnit doesn't parse.
+sed -i 's/status=".*"//' reports/tests/result.xml;
+
 echo "Cleaning up working directory"
 rm test_data*
