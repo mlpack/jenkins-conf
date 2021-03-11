@@ -1,5 +1,5 @@
 # Using debian's latest image as base-image.
-FROM debian:stretch
+FROM debian:bullseye
 
 # Steps to reduce image size.
 RUN apt-get update  && apt-get install -y aptitude && apt-get purge -y \
