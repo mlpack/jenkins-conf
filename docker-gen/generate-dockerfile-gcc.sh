@@ -9,7 +9,7 @@ gcc_version_major=`echo ${gcc_version/gcc-} | sed 's/^\([0-9]\).*/\1/'`;
 
 cat > Dockerfile << EOF
 # Using debian's latest image as base-image plus mlpack prereqs.
-FROM mlpack-docker-base:latest
+FROM mlpack.org:5000/mlpack-docker-base:latest
 
 # Installing gcc from source.  On newer gcc versions than the system gcc, we
 # have to move all the libraries and bootstrap.
