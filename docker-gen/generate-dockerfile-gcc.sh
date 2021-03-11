@@ -2,7 +2,8 @@
 
 arma_version=$1
 boost_version=$2
-gcc_version=$3
+cereal_version=$3
+gcc_version=$4
 
 gcc_version_major=`echo ${gcc_version/gcc-} | sed 's/^\([0-9]\).*/\1/'`;
 
@@ -27,7 +28,7 @@ RUN wget --no-check-certificate \
      ../configure --prefix=/usr --enable-languages=c,c++,fortran \
        --disable-multilib --disable-bootstrap; \
    fi && \
-   make -j32 && \
+   make && \
    make install && \
    if [ $gcc_version_major -gt 6 ]; then \
      mv /usr/lib64/* /usr/lib/x86_64-linux-gnu/; \
@@ -37,27 +38,40 @@ RUN wget --no-check-certificate \
 
 # Installing boost from source
 RUN wget --no-check-certificate \
-      "http://masterblaster.mlpack.org:5005/$boost_version.tar.gz" && \
+      "http://files.mlpack.org/$boost_version.tar.gz" && \
     tar xvzf $boost_version.tar.gz && \
     rm -f $boost_version.tar.gz && \
     cd $boost_version && \
-    ./bootstrap.sh --prefix=/usr/ \
-        -with-libraries=math,program_options,serialization,test && \
-    ./bjam install -j32 && \
+    ./bootstrap.sh --prefix=/usr/ -with-libraries=math && \
+    ./bjam install && \
     cd ../ && \
     rm -rf $boost_version
 
 # Installing armadillo via source-code.
 RUN wget --no-check-certificate \
-    http://masterblaster.mlpack.org:5005/$arma_version.tar.gz && \
+    http://files.mlpack.org/$arma_version.tar.gz && \
     tar xvzf $arma_version.tar.gz && \
     rm -f $arma_version.tar.gz && \
     cd $arma_version && \
     cmake -DINSTALL_LIB_DIR=/usr/lib . && \
-    make -j32 && \
+    make && \
     make install && \
     cd .. && \
     rm -rf $arma_version
+
+# Install cereal headers.
+RUN wget --no-check-certificate \
+    http://files.mlpack.org/$cereal_version.tar.gz && \
+    tar xvzf $cereal_version.tar.gz && \
+    rm -f $cereal_version.tar.gz && \
+    cd $cereal_version && \
+    mkdir build && \
+    cd build && \
+    cmake ../ && \
+    make && \
+    make install && \
+    cd ../.. && \
+    rm -rf $cereal_version
 EOF
 
 cat >> Dockerfile << 'EOF'
