@@ -60,17 +60,16 @@ RUN wget --no-check-certificate \
     rm -rf $arma_version
 
 # Install cereal headers.
+# We install directly to /usr/include/ which is a little ugly but hey we aren't
+# ever going to use these Docker containers as a real system so we can get away
+# with it...
 RUN wget --no-check-certificate \
     http://files.mlpack.org/$cereal_version.tar.gz && \
     tar xvzf $cereal_version.tar.gz && \
     rm -f $cereal_version.tar.gz && \
     cd $cereal_version && \
-    mkdir build && \
-    cd build && \
-    cmake ../ && \
-    make && \
-    make install && \
-    cd ../.. && \
+    cp -vr include/ /usr/include/
+    cd .. && \
     rm -rf $cereal_version
 EOF
 
