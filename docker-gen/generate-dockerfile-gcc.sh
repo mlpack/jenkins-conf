@@ -21,12 +21,15 @@ RUN wget --no-check-certificate \
    ./contrib/download_prerequisites && \
    mkdir objdir && \
    cd objdir && \
-   if [ $gcc_version_major -gt 6 ]; then \
+   if [ $gcc_version_major -gt 8 ]; then \
      ../configure --prefix=/usr --enable-languages=c,c++,fortran \
         --disable-multilib --enable-bootstrap; \
+   elif [ $gcc_version_major -gt 6 ]; then \
+     ../configure --prefix=/usr --enable-languages=c,c++,fortran \
+        --disable-multilib --enable-bootstrap --disable-libsanitizer; \
    else \
      ../configure --prefix=/usr --enable-languages=c,c++,fortran \
-       --disable-multilib --disable-bootstrap; \
+       --disable-multilib --disable-bootstrap --disable-libsanitizer; \
    fi && \
    make && \
    make install && \
