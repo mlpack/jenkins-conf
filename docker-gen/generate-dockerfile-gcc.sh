@@ -14,7 +14,7 @@ FROM mlpack.org:5000/mlpack-docker-base:latest
 # Installing gcc from source.  On newer gcc versions than the system gcc, we
 # have to move all the libraries and bootstrap.
 RUN wget --no-check-certificate \
-   https://ftp.gnu.org/gnu/gcc/$gcc_version/$gcc_version.tar.gz && \
+   https://files.mlpack.org/$gcc_version.tar.gz && \
    tar xvzf $gcc_version.tar.gz && \
    rm -f $gcc_version.tar.gz && \
    cd $gcc_version && \
