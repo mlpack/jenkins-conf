@@ -2,7 +2,7 @@
 FROM debian:bullseye
 
 # Steps to reduce image size.
-RUN apt-get update  && apt-get install -y aptitude && apt-get purge -y \
+RUN apt-get update && apt-get install -y aptitude && apt-get purge -y \
     $(aptitude search '~i!~M!~prequired!~pimportant!~R~prequired! \
     ~R~R~prequired!~R~pimportant!~R~R~pimportant!busybox!grub!initramfs-tools' \
     | awk '{print $2}' ) && apt-get purge -y aptitude && \
