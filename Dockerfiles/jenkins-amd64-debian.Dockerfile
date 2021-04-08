@@ -25,6 +25,7 @@ RUN apt-get update -qq && \
     python3.7 \
     python3-distutils \
     unzip \
+    valgrind \
     xz-utils \
     python3-pip \
     python3-setuptools \
