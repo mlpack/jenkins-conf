@@ -20,6 +20,10 @@ whitelist = [("*", "There are identical sub-expressions to the left and to the r
              ("scd_test.cpp", "The value written to &amp;descentPolicy (type ens::GreedyDescent*) is never used."),
              ("scd_test.cpp", "The value written to &amp;descentPolicy (type ens::CyclicDescent*) is never used."),
              ("*", "There are identical sub-expressions to the left and to the right of the &apos;%&apos; operator: g % g"),
+             ("*", "is allocated on the heap and never freed. In function mlpackMain."),
+             ("*", "has already been deleted by delete."),
+             ("fastmks_impl.hpp", "Leaking memory. Tree is allocated on the heap and never freed. In function Train."),
+             ("*", "Use after free. Object is used after it may already have been freed with delete."),
              ("catch.hpp", "*")]
 
 def check_whitelist_issue(line):
