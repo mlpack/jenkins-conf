@@ -37,6 +37,7 @@ RUN apt-get update -qq && \
     libcereal-dev \
     txt2man \
     doxygen \
+    graphviz \
     sudo \
     gnupg \
     libarmadillo-dev \
