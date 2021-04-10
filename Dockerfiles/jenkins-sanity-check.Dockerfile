@@ -47,6 +47,7 @@ RUN apt-get update -qq && \
     sudo \
     gnupg \
     libarmadillo-dev \
+    libcereal-dev \
     build-essential && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     pip3 --no-cache-dir install --upgrade --ignore-installed cython numpy \
