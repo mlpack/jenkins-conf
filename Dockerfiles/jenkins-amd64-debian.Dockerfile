@@ -38,6 +38,7 @@ RUN apt-get update -qq && \
     txt2man \
     doxygen \
     graphviz \
+    sloccount \
     sudo \
     gnupg \
     libarmadillo-dev \
