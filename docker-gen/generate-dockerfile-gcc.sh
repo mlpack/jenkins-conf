@@ -47,9 +47,9 @@ RUN wget --no-check-certificate \
     cd $boost_version && \
     ./bootstrap.sh --prefix=/usr/ -with-libraries=math && \
     if [ ! -f "bjam" ]; then \
-      ./bjam install; \
-    else \
       ./b2 install; \
+    else \
+      ./bjam install; \
     fi && \
     cd ../ && \
     rm -rf $boost_version
