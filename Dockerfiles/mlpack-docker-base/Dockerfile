@@ -1,5 +1,8 @@
-# Using debian's latest image as base-image.
-FROM debian:bullseye
+# We use debian stretch, since the packages it contains were compiled with gcc
+# 6.  This (hopefully) helps prevent a lot of problems when we replace the
+# system libraries and compiler with newer versions, but it's always possible
+# there might still be some grief, so be careful...
+FROM debian:stretch
 
 # Steps to reduce image size.
 RUN apt-get update && apt-get install -y aptitude && apt-get purge -y \
