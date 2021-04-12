@@ -24,6 +24,8 @@ whitelist = [("*", "There are identical sub-expressions to the left and to the r
              ("*", "has already been deleted by delete."),
              ("fastmks_impl.hpp", "Leaking memory. Tree is allocated on the heap and never freed. In function Train."),
              ("*", "Use after free. Object is used after it may already have been freed with delete."),
+             ("io_util.hpp", "Leaking memory. T is allocated on the heap and never freed. In function SetParamPtr."),
+             ("load_csv.hpp", "Missing check is_open on std::ifstream before calling seekg on it."),
              ("catch.hpp", "*")]
 
 def check_whitelist_issue(line):
