@@ -33,9 +33,7 @@ RUN wget --no-check-certificate \
    fi && \
    make && \
    make install && \
-   if [ $gcc_version_major -gt 6 ]; then \
-     mv /usr/lib64/* /usr/lib/x86_64-linux-gnu/; \
-   fi && \
+   mv /usr/lib64/* /usr/lib/x86_64-linux-gnu/ && \
    cd ../../ && \
    rm -rf $gcc_version
 
