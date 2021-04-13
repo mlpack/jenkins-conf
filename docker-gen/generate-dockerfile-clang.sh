@@ -2,7 +2,8 @@
 
 arma_version=$1
 boost_version=$2
-llvm_version=$3
+cereal_version=$3
+llvm_version=$4
 
 cat > Dockerfile <<EOF
 # Using debian:stretch image as base-image plus mlpack prereqs.
@@ -11,7 +12,7 @@ FROM mlpack-docker-base:latest
 # Installing clang from source.
 WORKDIR /
 RUN apt-get update -qq && apt-get install -y python && \
-    wget http://masterblaster.mlpack.org:5005/$llvm_version.tar.xz && \
+    wget http://files.mlpack.org/$llvm_version.tar.xz && \
     tar xvf $llvm_version.tar.xz && \
     rm -f $llvm_version.tar.xz && \
     cd $llvm_version && \
@@ -33,7 +34,7 @@ RUN apt-get update -qq && apt-get install -y python && \
 # Installing boost from source.
 WORKDIR /
 RUN wget \
-      http://masterblaster.mlpack.org:5005/$boost_version.tar.gz && \
+      http://files.mlpack.org/$boost_version.tar.gz && \
     tar xvzf $boost_version.tar.gz && \
     rm -f $boost_version.tar.gz && \
     cd $boost_version && \
@@ -52,7 +53,7 @@ RUN apt-get update -qq && apt-get install -y liblapack-dev libblas-dev libsuperl
     rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/* && \
     rm -rf /usr/share/man/??_* && \
     wget --no-check-certificate \
-      "http://masterblaster.mlpack.org:5005/$arma_version.tar.gz" && \
+        "http://files.mlpack.org/$arma_version.tar.gz" && \
     tar xvzf $arma_version.tar.gz && \
     rm -f $arma_version.tar.gz && \
     cd $arma_version && \
@@ -61,6 +62,19 @@ RUN apt-get update -qq && apt-get install -y liblapack-dev libblas-dev libsuperl
     make install && \
     cd .. && \
     rm -rf $arma_version
+
+# Install cereal headers.
+# We install directly to /usr/include/ which is a little ugly but hey we aren't
+# ever going to use these Docker containers as a real system so we can get away
+# with it...
+RUN wget --no-check-certificate \
+    http://files.mlpack.org/$cereal_version.tar.gz && \
+    tar xvzf $cereal_version.tar.gz && \
+    rm -f $cereal_version.tar.gz && \
+    cd $cereal_version && \
+    cp -vr include/ /usr/include/ && \
+    cd .. && \
+    rm -rf $cereal_version
 EOF
 
 cat >> Dockerfile << 'EOF'
