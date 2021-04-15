@@ -5,6 +5,8 @@ boost_version=$2
 cereal_version=$3
 llvm_version=$4
 
+llvm_version_major=`echo ${llvm_version/llvm-} | sed 's/^\([0-9]\).*/\1/'`;
+
 cat > Dockerfile <<EOF
 # Using debian:stretch image as base-image plus mlpack prereqs.
 FROM mlpack-docker-base:latest
@@ -31,16 +33,24 @@ RUN apt-get update -qq && apt-get install -y python && \
     rm -rf /var/cache/debconf/*-old && rm -rf /usr/share/doc/* && \
     rm -rf /usr/share/man/??_*
 
-# Installing boost from source.
+# Installing boost from source.  On newer LLVM versions, we have to change
+# -emit-pth in the Boost sources to -emit-pch.
 WORKDIR /
 RUN wget \
       http://files.mlpack.org/$boost_version.tar.gz && \
     tar xvzf $boost_version.tar.gz && \
     rm -f $boost_version.tar.gz && \
     cd $boost_version && \
+    if [ $llvm_version_major >= 9 ]; then \
+      sed -i 's/-emit-pth/-emit-pch/' tools/build/v2/tools/clang-linux.jam; && \
+    fi && \
     ./bootstrap.sh --with-toolset=clang --prefix=/usr/ \
         --with-libraries=math,program_options,serialization,test && \
-    ./bjam install -j32 && \
+    if [ ! -f "bjam" ]; then \
+      ./b2 install; \
+    else
+      ./bjam install; \
+    fi && \
     cd .. && \
     rm -rf $boost_version/
 
