@@ -48,7 +48,7 @@ RUN wget \
         --with-libraries=math,program_options,serialization,test && \
     if [ ! -f "bjam" ]; then \
       ./b2 install; \
-    else
+    else \
       ./bjam install; \
     fi && \
     cd .. && \
