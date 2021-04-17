@@ -41,7 +41,7 @@ RUN wget \
     tar xvzf $boost_version.tar.gz && \
     rm -f $boost_version.tar.gz && \
     cd $boost_version && \
-    if [ $llvm_version_major >= 9 ]; then \
+    if [ $llvm_version_major -ge 9 ]; then \
       sed -i 's/-emit-pth/-emit-pch/' tools/build/v2/tools/clang-linux.jam; \
     fi && \
     ./bootstrap.sh --with-toolset=clang --prefix=/usr/ \
