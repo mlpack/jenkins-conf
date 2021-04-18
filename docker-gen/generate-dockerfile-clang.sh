@@ -44,7 +44,7 @@ RUN wget \
     if [ $llvm_version_major -ge 9 ]; then \
       echo "modifying file!" && \
       cat tools/build/v2/tools/clang-linux.jam && \
-      sed -i 's/-emit-pth/-emit-pch/' tools/build/v2/tools/clang-linux.jam &&
+      sed -i 's/-emit-pth/-emit-pch/' tools/build/v2/tools/clang-linux.jam && \
       cat tools/build/v2/tools/clang-linux.jam; \
     fi && \
     ./bootstrap.sh --with-toolset=clang --prefix=/usr/ \
