@@ -5,8 +5,6 @@ boost_version=$2
 cereal_version=$3
 llvm_version=$4
 
-llvm_version_major=`echo ${llvm_version/llvm-} | sed 's/^\([0-9]\).*/\1/'`;
-
 cat > Dockerfile <<EOF
 # Using debian:stretch image as base-image plus mlpack prereqs.
 FROM mlpack-docker-base:latest
@@ -41,19 +39,7 @@ RUN wget \
     tar xvzf $boost_version.tar.gz && \
     rm -f $boost_version.tar.gz && \
     cd $boost_version && \
-    if [ $llvm_version_major -ge 9 ]; then \
-      echo "modifying file!" && \
-      cat tools/build/v2/tools/clang-linux.jam && \
-      sed -i 's/-emit-pth/-emit-pch/' tools/build/v2/tools/clang-linux.jam && \
-      cat tools/build/v2/tools/clang-linux.jam; \
-    fi && \
-    ./bootstrap.sh --with-toolset=clang --prefix=/usr/ \
-        --with-libraries=math,program_options,serialization,test && \
-    if [ ! -f "bjam" ]; then \
-      ./b2 install; \
-    else \
-      ./bjam install; \
-    fi && \
+    cp -r boost/ /usr/include/ && \
     cd .. && \
     rm -rf $boost_version/
 
