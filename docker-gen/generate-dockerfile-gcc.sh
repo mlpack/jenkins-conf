@@ -68,7 +68,7 @@ RUN wget --no-check-certificate \
     tar xvzf $cereal_version.tar.gz && \
     rm -f $cereal_version.tar.gz && \
     cd $cereal_version && \
-    cp -vr include/ /usr/include/ && \
+    cp -vr include/cereal /usr/include/ && \
     cd .. && \
     rm -rf $cereal_version
 EOF
