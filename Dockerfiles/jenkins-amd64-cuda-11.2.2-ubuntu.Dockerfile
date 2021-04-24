@@ -21,12 +21,14 @@ RUN apt-get update -qq && \
     make \
     libarmadillo-dev \
     build-essential \
-    libclblas-dev
+    libclblas-dev \
+    && ln -s /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
 
 RUN useradd -ms /bin/bash jenkins
 
 # Setup environment.
-ENV LD_LIBRARY_PATH /usr/local/lib
+ENV LD_LIBRARY_PATH="/usr/local/cuda-11.2/targets/x86_64-linux/lib/:$LD_LIBRARY_PATH"
+ENV CPLUS_INCLUDE_PATH="/usr/local/cuda-11.2/targets/x86_64-linux/include/:$CPLUS_INCLUDE_PATH"
 USER jenkins
 WORKDIR /home/jenkins
 CMD /bin/bash
