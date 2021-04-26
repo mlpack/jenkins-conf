@@ -63,6 +63,7 @@ whitelist = [("*", "There are identical sub-expressions to the left and to the r
              ("lsh_test.cpp", "The value read from fail was never initialized."),
              ("metric_test.cpp", "The value written to"),
              ("python_binding_test.cpp", "The value written to"),
+             ("*", "Initializer of anonymous_namespace"),
              ("catch.hpp", "*")]
 
 def check_whitelist_issue(line):
