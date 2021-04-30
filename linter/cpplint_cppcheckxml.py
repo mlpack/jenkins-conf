@@ -49,6 +49,7 @@ def parse():
 
     # Write footer.
     sys.stderr.write('''</errors>\n''')
+    sys.stderr.write('''</cppcheck>\n''')
     sys.stderr.write('''</results>\n''')
 
 if __name__ == '__main__':
