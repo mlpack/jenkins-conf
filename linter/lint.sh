@@ -51,6 +51,7 @@ find "$dir" \
 ! -path "*src/mlpack/bindings/cli/third_party/CLI/CLI11.hpp" \
 ! -path "*src/mlpack/bindings/R/mlpack/src/boost/*" \
 ! -path "*src/mlpack/core/cereal/pair_associative_container.hpp" \
+! -path "*tests/catch.hpp" \
 -print0 -iname '*.[hc]pp' -type f | \
 xargs -0 python "$linter"/cpplint.py --extensions=hpp,cpp --filter=\
 -whitespace/braces,\
