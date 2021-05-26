@@ -25,6 +25,8 @@ RUN apt-get update -qq && \
     python3.7 \
     python3-distutils \
     unzip \
+    libstb-dev \
+    libensmallen-dev \
     xz-utils \
     python3-pip \
     python3-setuptools \

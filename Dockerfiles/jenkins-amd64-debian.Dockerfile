@@ -27,6 +27,8 @@ RUN apt-get update -qq && \
     unzip \
     valgrind \
     xz-utils \
+    libensmallen-dev \
+    libstb-dev \
     python3-pip \
     python3-setuptools \
     wget \

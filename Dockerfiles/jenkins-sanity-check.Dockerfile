@@ -32,6 +32,8 @@ RUN apt-get update -qq && \
     patchelf \
     pkg-config \
     python3.7 \
+    libensmallen-dev \
+    libstb-dev \
     python3-distutils \
     unzip \
     xz-utils \
