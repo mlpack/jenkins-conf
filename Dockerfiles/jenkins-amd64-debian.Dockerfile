@@ -27,7 +27,6 @@ RUN apt-get update -qq && \
     unzip \
     valgrind \
     xz-utils \
-    libensmallen-dev \
     libstb-dev \
     python3-pip \
     python3-setuptools \
@@ -56,6 +55,15 @@ RUN apt-get update -qq && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     pip3 --no-cache-dir install --upgrade --ignore-installed cython numpy \
     pandas setuptools
+
+# Install ensmallen.
+RUN wget http://ensmallen.org/files/ensmallen-2.16.2.tar.gz && \
+    tar -xf ensmallen-2.16.2.tar.gz && \
+    cd ensmallen-2.16.2 && \
+    mkdir build && \
+    cd build && \
+    cmake ../ && \
+    make install
 
 RUN useradd -ms /bin/bash jenkins
 
