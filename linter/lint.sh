@@ -74,7 +74,7 @@ grep -v 'Missing spaces around <' | \
 grep -v 'Consider using rand_r' | \
 grep -v 'Consider using CHECK_EQ instead of CHECK(a == b)' | \
 grep -v 'Consider using CHECK_LE instead of CHECK(a <= b)' | \
-python "$linter"/cpplint_cppcheckxml.py 2> "$reports"
+python3 "$linter"/cpplint_cppcheckxml.py 2> "$reports"
 
 # Restore directory.
 cd "$cwd"
