@@ -22,6 +22,7 @@ RUN apt-get update -qq && \
     libarmadillo-dev \
     build-essential \
     libclblas-dev \
+    nsight-compute \
     && ln -s /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
 
 RUN useradd -ms /bin/bash jenkins
