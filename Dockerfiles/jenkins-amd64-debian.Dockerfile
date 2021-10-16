@@ -42,7 +42,6 @@ RUN apt-get update -qq && \
     sloccount \
     sudo \
     gnupg \
-    libarmadillo-dev \
     build-essential \
     gcc-arm-linux-gnueabi \
     g++-arm-linux-gnueabi \
@@ -55,6 +54,14 @@ RUN apt-get update -qq && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     pip3 --no-cache-dir install --upgrade --ignore-installed cython numpy \
     pandas setuptools
+
+# Install armadillo.
+RUN curl -Lk https://sourceforge.net/projects/arma/files/armadillo-9.800.6.tar.xz | tar -xvJ && \
+    cd armadillo* && \
+    cmake . && \
+    make && \
+    sudo make install && \
+    cd ..
 
 # Install ensmallen.
 RUN wget http://ensmallen.org/files/ensmallen-2.16.2.tar.gz && \
