@@ -27,7 +27,6 @@ RUN apt-get update -qq && \
     unzip \
     valgrind \
     xz-utils \
-    libstb-dev \
     python3-pip \
     python3-setuptools \
     wget \
@@ -71,6 +70,13 @@ RUN wget http://ensmallen.org/files/ensmallen-2.16.2.tar.gz && \
     cd build && \
     cmake ../ && \
     make install
+
+# Install STB manually.  The version in buster does not work with mlpack.
+RUN wget http://www.mlpack.org/files/stb.tar.gz && \
+    tar -xf stb.tar.gz && \
+    mkdir /usr/include/stb/ && \
+    cp stb/include/* /usr/include/stb/ && \
+    rm -rf stb stb.tar.gz
 
 RUN useradd -ms /bin/bash jenkins
 
