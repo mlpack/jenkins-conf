@@ -61,10 +61,12 @@ testSuites = []
 for line in data:
   start = line.find('.cpp')
   if start != -1:
-    with open(testFilePath + line, 'r') as file:
-      testData = file.readlines()
-    testData = [x.strip() for x in testData]
-
+    try:
+      with open(testFilePath + line, 'r') as file:
+        testData = file.readlines()
+      testData = [x.strip() for x in testData]
+    except:
+      continue
 
     includes = [];
     testCases = [];
