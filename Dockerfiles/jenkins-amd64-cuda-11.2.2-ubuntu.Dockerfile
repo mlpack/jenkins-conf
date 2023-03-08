@@ -23,6 +23,10 @@ RUN apt-get update -qq && \
     build-essential \
     libclblas-dev \
     nsight-compute \
+    nvidia-opencl-dev \
+    ocl-icd-libopencl1 \
+    opencl-headers \
+    libclblas-dev \
     && ln -s /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
 
 RUN useradd -ms /bin/bash jenkins
