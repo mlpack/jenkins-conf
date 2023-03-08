@@ -24,6 +24,7 @@ RUN apt-get update -qq && \
     libclblas-dev \
     nsight-compute \
     nvidia-opencl-dev \
+    nvidia-opencl-icd \
     ocl-icd-libopencl1 \
     opencl-headers \
     libclblas-dev \
