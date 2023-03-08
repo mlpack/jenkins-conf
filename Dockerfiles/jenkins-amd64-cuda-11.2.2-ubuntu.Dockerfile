@@ -24,17 +24,23 @@ RUN apt-get update -qq && \
     libclblas-dev \
     nsight-compute \
     nvidia-opencl-dev \
-    nvidia-opencl-icd \
     ocl-icd-libopencl1 \
     opencl-headers \
+    clinfo \
     libclblas-dev \
     && ln -s /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
+
+RUN mkdir -p /etc/OpenCL/vendors && \
+    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
 
 RUN useradd -ms /bin/bash jenkins
 
 # Setup environment.
 ENV LD_LIBRARY_PATH="/usr/local/cuda-11.2/targets/x86_64-linux/lib/:$LD_LIBRARY_PATH"
 ENV CPLUS_INCLUDE_PATH="/usr/local/cuda-11.2/targets/x86_64-linux/include/:$CPLUS_INCLUDE_PATH"
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+
 USER jenkins
 WORKDIR /home/jenkins
 CMD /bin/bash
