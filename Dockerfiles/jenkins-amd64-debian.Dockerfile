@@ -55,7 +55,7 @@ RUN apt-get update -qq && \
     pandas setuptools
 
 # Install armadillo.
-RUN curl -Lk https://sourceforge.net/projects/arma/files/armadillo-9.800.6.tar.xz | tar -xvJ && \
+RUN curl -Lk https://files.mlpack.org/armadillo-11.4.1.tar.gz | tar -xvz && \
     cd armadillo* && \
     cmake . && \
     make && \
@@ -63,9 +63,9 @@ RUN curl -Lk https://sourceforge.net/projects/arma/files/armadillo-9.800.6.tar.x
     cd ..
 
 # Install ensmallen.
-RUN wget http://ensmallen.org/files/ensmallen-2.16.2.tar.gz && \
-    tar -xf ensmallen-2.16.2.tar.gz && \
-    cd ensmallen-2.16.2 && \
+RUN wget http://ensmallen.org/files/ensmallen-2.19.0.tar.gz && \
+    tar -xf ensmallen-2.19.0.tar.gz && \
+    cd ensmallen-2.19.0 && \
     mkdir build && \
     cd build && \
     cmake ../ && \
