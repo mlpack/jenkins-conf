@@ -16,6 +16,7 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     libblas-dev \
     libarpack2 \
     libsuperlu-dev \
+    libcereal-dev \
     libstb-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     pip3 --no-cache-dir install --upgrade --ignore-installed cython numpy \
