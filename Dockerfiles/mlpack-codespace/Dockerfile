@@ -23,10 +23,20 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     pandas setuptools
 
 # Add a run step for R and R packages.
-RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc \
-    && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"\
+# Attempt tog et R packages from the cran40 repository.
+# Note, this is tagged to the focal release! Change me.
+RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc \
+    && wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc | tee -a /etc/apt/trusted.gpg.d/cranapt_key.asc \
+    && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/"\
+    && add-apt-repository "deb [arch=amd64] https://r2u.stat.illinois.edu/ubuntu focal main" \
+    && echo "Package: *" > /etc/apt/preferences.d/99cranapt \
+    && echo "Pin: release o=CRAN-Apt Project" >> /etc/apt/preferences.d/99cranapt \
+    && echo "Pin: release l=CRAN-Apt Packages" >> /etc/apt/preferences.d/99cranapt \
+    && echo "Pin-Priority: 700"  >> /etc/apt/preferences.d/99cranapt \
+    && apt update -qq \
     && apt -y install r-base r-base-dev \
-    && apt -y install r-cran-languageserver r-cran-httpgd r-cran-rcpp r-cran-rcpparmadillo r-cran-rcppensmallen r-cran-devtools r-cran-testthat 
+    && apt -y install r-cran-rcpp r-cran-rcpparmadillo r-cran-devtools r-cran-testthat \
+    && apt -y install r-cran-languageserver r-cran-httpgd r-cran-rcppensmallen 
 
 ## Install armadillo.
 RUN curl -Lk https://files.mlpack.org/armadillo-11.4.1.tar.gz | tar -xvz && \
