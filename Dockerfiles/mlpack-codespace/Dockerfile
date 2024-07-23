@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/devcontainers/universal:focal
 LABEL maintainer="james.balamuta@gmail.com"
 
 ## For apt to be noninteractive.
-ENV DEBCONF_NONINTERACTIVE_SEEN true
+ENV DEBCONF_NONINTERACTIVE_SEEN=true
 
 ## Install baseline dependencies not found in the devcontainer
 ## For details on what's included, please see:
@@ -62,5 +62,5 @@ RUN apt-get clean -y && rm -rf \
     ensmallen*
 
 # Setup environment.
-ENV LD_LIBRARY_PATH /usr/local/lib
-CMD /bin/bash
+ENV LD_LIBRARY_PATH=/usr/local/lib
+CMD ["/bin/bash"]
