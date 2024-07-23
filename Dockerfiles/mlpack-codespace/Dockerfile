@@ -22,6 +22,12 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     pip3 --no-cache-dir install --upgrade --ignore-installed cython numpy \
     pandas setuptools
 
+# Add a run step for R and R packages.
+RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc \
+    && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"\
+    && apt -y install r-base r-base-dev \
+    && apt -y install r-cran-languageserver r-cran-httpgd r-cran-rcpp r-cran-rcpparmadillo r-cran-rcppensmallen r-cran-devtools r-cran-testthat 
+
 ## Install armadillo.
 RUN curl -Lk https://files.mlpack.org/armadillo-11.4.1.tar.gz | tar -xvz && \
     cd armadillo* && \
