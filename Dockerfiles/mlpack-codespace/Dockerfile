@@ -39,7 +39,7 @@ RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc |
     && apt -y install r-cran-languageserver r-cran-httpgd r-cran-rcppensmallen 
 
 ## Install armadillo.
-RUN curl -Lk https://files.mlpack.org/armadillo-11.4.1.tar.gz | tar -xvz && \
+RUN curl -Lk https://files.mlpack.org/armadillo-10.8.2.tar.gz  | tar -xvz && \
     cd armadillo* && \
     cmake . && \
     make && \
