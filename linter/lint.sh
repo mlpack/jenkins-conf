@@ -61,6 +61,7 @@ find "$dir" \
 -build/namespaces_literals,\
 -build/namespaces,\
 -readability/casting,\
+-readability/inheritance,\
 -readability/todo,\
 -runtime/explicit,\
 -runtime/int,\
