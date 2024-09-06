@@ -36,6 +36,11 @@ linter="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 # Change to source directory.
 cd "$root"
 
+# Create a simple python venv to install cpplint.
+python3 -m venv lint_venv/
+source lint_venv/bin/activate
+pip3 install cpplint
+
 # Get all files for the style check and exclude external files and run
 # cpplint and convert the output.
 find "$dir" \
@@ -68,6 +73,8 @@ grep -v 'Do not include \.cpp files' |\
 grep -v 'Consider using rand_r' |\
 grep -v 'Missing spaces around <' |\
 python3 "$linter"/cpplint_cppcheckxml.py 2> "$reports"
+
+rm -rf lint_venv/ # Clean up venv.
 
 # Restore directory.
 cd "$cwd"
