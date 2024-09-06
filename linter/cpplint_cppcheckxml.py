@@ -29,7 +29,7 @@ def parse():
     sys.stderr.write('''<errors>\n''')
 
     # Do line-by-line conversion.
-    r = re.compile('([^:]*):([0-9]*):  ([^\[]*)\[([^\]]*)\] \[([0-9]*)\].*')
+    r = re.compile(r'([^:]*):([0-9]*):  ([^\[]*)\[([^\]]*)\] \[([0-9]*)\].*')
 
     for l in sys.stdin.readlines():
         m = r.match(l.strip())

@@ -39,41 +39,34 @@ cd "$root"
 # Get all files for the style check and exclude external files and run
 # cpplint and convert the output.
 find "$dir" \
-! -path "*/src/mlpack/core/arma_extend/*" \
-! -path "*/src/mlpack/core/boost_backport/*" \
-! -path "*src/mlpack/bindings/matlab/*" \
-! -path "*src/mlpack/core/core.hpp" \
-! -path "*src/mlpack/core/util/arma_config_check.hpp" \
-! -path "*src/mlpack/methods/ann/visitor/*" \
-! -path "*src/mlpack/prereqs.hpp" \
-! -path "*src/mlpack/core.hpp" \
-! -path "*src/mlpack/tests/catch.hpp" \
-! -path "*src/mlpack/bindings/cli/third_party/CLI/CLI11.hpp" \
-! -path "*src/mlpack/bindings/R/mlpack/src/boost/*" \
-! -path "*src/mlpack/core/cereal/pair_associative_container.hpp" \
-! -path "*tests/catch.hpp" \
--print0 -iname '*.[hc]pp' -type f | \
-xargs -0 python "$linter"/cpplint.py --extensions=hpp,cpp --filter=\
--whitespace/braces,\
--whitespace/newline,\
+    -not -path "*src/mlpack/core/arma_extend/*" \
+    -not -path "*src/mlpack/tests/catch.hpp" \
+    -not -path "*src/mlpack/bindings/cli/third_party/CLI/CLI11.hpp" \
+    -not -path "*src/mlpack/core/cereal/*.hpp" \
+    -not -path "*tests/catch.hpp" \
+    -not -path "*tests/ann/not_adapted/*.cpp" \
+    -iname '*.[hc]pp' -type f -print0 | \
+    xargs -0 cpplint --extensions=hpp,cpp --filter=\
+-legal/copyright,\
+-build/c++11,\
 -build/header_guard,\
 -build/include_order,\
--build/storage_class,\
--build/namespaces,\
+-build/include_subdir,\
 -build/include_what_you_use,\
--legal/copyright,\
+-build/namespaces_literals,\
+-build/namespaces,\
 -readability/casting,\
--readability/alt_tokens,\
 -readability/todo,\
--readability/multiline_string,\
 -runtime/explicit,\
 -runtime/int,\
--runtime/string,\
--runtime/references 2>&1 | \
-grep -v 'Missing spaces around <' | \
-grep -v 'Consider using rand_r' | \
-grep -v 'Consider using CHECK_EQ instead of CHECK(a == b)' | \
-grep -v 'Consider using CHECK_LE instead of CHECK(a <= b)' | \
+-runtime/references,\
+-whitespace/braces,\
+-whitespace/comments,\
+-whitespace/newline\
+    2>&1 | \
+grep -v 'Do not include \.cpp files' |\
+grep -v 'Consider using rand_r' |\
+grep -v 'Missing spaces around <' |\
 python3 "$linter"/cpplint_cppcheckxml.py 2> "$reports"
 
 # Restore directory.
