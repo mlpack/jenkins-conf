@@ -37,9 +37,10 @@ linter="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 cd "$root"
 
 # Create a simple python venv to install cpplint.
+# We specifically use 1.6.1 because 2.0.0 and newer have big changes.
 python3 -m venv lint_venv/
 source lint_venv/bin/activate
-pip3 install cpplint
+pip3 install cpplint==1.6.1
 
 # Get all files for the style check and exclude external files and run
 # cpplint and convert the output.
