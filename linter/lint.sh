@@ -1,11 +1,9 @@
 #!/bin/bash
 #
-# Run Google's cpplint over the codebase and convert convert the output from
-# Google's cpplint.py to the cppcheck XML format for consumption by the Jenkins
-# cppcheck plugin.
+# Run Google's cpplint over the codebase and provide output in junit format.
 #
 # The given arguments are the src root and the reports directory e.g.:
-# ./lint.sh --root . --reports reports/cpplint.xml
+# ./lint.sh --root . --reports reports/cpplint.junit.xml
 
 while [[ $# -gt 1 ]]
 do
@@ -52,7 +50,7 @@ find "$dir" \
     -not -path "*tests/catch.hpp" \
     -not -path "*tests/ann/not_adapted/*.cpp" \
     -iname '*.[hc]pp' -type f -print0 | \
-    xargs -0 cpplint --extensions=hpp,cpp --filter=\
+    xargs -0 cpplint --extensions=hpp,cpp --output=junit --filter=\
 -legal/copyright,\
 -build/c++11,\
 -build/header_guard,\
@@ -69,12 +67,7 @@ find "$dir" \
 -runtime/references,\
 -whitespace/braces,\
 -whitespace/comments,\
--whitespace/newline\
-    2>&1 | \
-grep -v 'Do not include \.cpp files' |\
-grep -v 'Consider using rand_r' |\
-grep -v 'Missing spaces around <' |\
-python3 "$linter"/cpplint_cppcheckxml.py 2> "$reports"
+-whitespace/newline > "$reports";
 
 rm -rf lint_venv/ # Clean up venv.
 
