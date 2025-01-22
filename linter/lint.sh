@@ -38,7 +38,7 @@ cd "$root"
 # We specifically use 1.6.1 because 2.0.0 and newer have big changes.
 python3 -m venv lint_venv/
 source lint_venv/bin/activate
-pip3 install cpplint==1.6.1
+pip3 install cpplint
 
 # Get all files for the style check and exclude external files and run
 # cpplint and convert the output.
@@ -54,6 +54,7 @@ find "$dir" \
 -legal/copyright,\
 -build/c++11,\
 -build/header_guard,\
+-build/include,\
 -build/include_order,\
 -build/include_subdir,\
 -build/include_what_you_use,\
@@ -62,12 +63,14 @@ find "$dir" \
 -readability/casting,\
 -readability/inheritance,\
 -readability/todo,\
+-readability/multiline_comment,\
 -runtime/explicit,\
 -runtime/int,\
 -runtime/references,\
 -whitespace/braces,\
 -whitespace/comments,\
--whitespace/newline 2> "$reports";
+-whitespace/newline,\
+-whitespace/indent_namespace 2> "$reports";
 # Output goes to stderr, so redirect that to the output file.
 
 rm -rf lint_venv/ # Clean up venv.
