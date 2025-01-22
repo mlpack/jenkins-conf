@@ -67,7 +67,8 @@ find "$dir" \
 -runtime/references,\
 -whitespace/braces,\
 -whitespace/comments,\
--whitespace/newline > "$reports";
+-whitespace/newline 2> "$reports";
+# Output goes to stderr, so redirect that to the output file.
 
 rm -rf lint_venv/ # Clean up venv.
 
