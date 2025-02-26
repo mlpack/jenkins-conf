@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Get the test cases given the modified files, the CMakeLists file that
 # contains the test files and the path to the tests.
