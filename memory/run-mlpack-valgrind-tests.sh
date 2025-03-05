@@ -14,8 +14,5 @@ rm -rf $REPORT_DIR/*
 echo "Finding test cases."
 ./parse-tests.py $CHANGED_FILES $CMAKE_FILE $TEST_PATH > testbins.txt
 
-echo "Copy CSV files for tests to current working directory"
-cp ./src/mlpack/tests/data/* build/
-
 echo "Running all tests."
 cat testbins.txt | xargs -n 1 -P $WORKER -I % ./memory-check.sh %

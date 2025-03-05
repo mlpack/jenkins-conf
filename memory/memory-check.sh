@@ -12,7 +12,5 @@ testxmlfile=$(sed 's#/#_#g' <<<  $1).catch_test.xml
 cd build/
 valgrind --tool=memcheck --leak-check=full --track-origins=yes \
          --num-callers=40 --error-exitcode=1 --xml=yes --xml-file=$REPORT_DIR/$xmllogfile --log-file=$REPORT_DIR/$logfile \
-         --verbose -- bin/mlpack_test -r junit $1 \
-        | tee $REPORT_DIR/$testxmlfile;
-touch $REPORT_DIR/result.xml
+         --verbose -- bin/mlpack_test -r junit $1 -o $REPORT_DIR/$testxmlfile;
 cd ../
