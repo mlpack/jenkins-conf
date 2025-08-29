@@ -1,6 +1,6 @@
 FROM debian:stable
 
-LABEL maintainer="ryan.curtin@ratml.org"
+LABEL maintainer="ryan@ratml.org"
 
 ## For apt to be noninteractive.
 ENV DEBIAN_FRONTEND noninteractive

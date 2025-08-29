@@ -1,6 +1,6 @@
 FROM debian:stable
 
-LABEL maintainer="ryan.curtin@ratml.org"
+LABEL maintainer="ryan@ratml.org"
 
 ## For apt to be noninteractive.
 ENV DEBIAN_FRONTEND noninteractive
@@ -34,12 +34,12 @@ RUN apt-get update -qq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install the cortexa76 cross-compilation environment.
-RUN curl -Lk https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--glibc--stable-2021.11-1.tar.bz2 |\
-    tar -xvjC /opt/;
+# Install the powerpc cross-compilation environment.
+RUN curl -Lk https://toolchains.bootlin.com/downloads/releases/toolchains/mips32/tarballs/mips32--glibc--stable-2025.08-1.tar.xz |\
+    tar -xvJC /opt/;
 
-ENV TOOLCHAIN_PREFIX=/opt/aarch64--glibc--stable-2021.11-1/bin/aarch64-buildroot-linux-gnu-
-ENV CMAKE_SYSROOT=/opt/aarch64--glibc--stable-2021.11-1/aarch64-buildroot-linux-gnu/sysroot
+ENV TOOLCHAIN_PREFIX=/opt/mips32--glibc--stable-2025.08-1/bin/mips32-buildroot-linux-gnu-
+ENV CMAKE_SYSROOT=/opt/mips32--glibc--stable-2025.08-1/mips32-buildroot-linux-gnu/sysroot
 
 # On the cross-compile hosts used for this job, the uid will be 1001, but it's
 # possible someone might want to run this container with a different uid, so
