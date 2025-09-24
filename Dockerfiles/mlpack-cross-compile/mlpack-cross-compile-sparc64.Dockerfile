@@ -39,8 +39,8 @@ RUN apt-get update -qq && \
 RUN curl -Lk https://toolchains.bootlin.com/downloads/releases/toolchains/sparc64/tarballs/sparc64--glibc--stable-2025.08-1.tar.xz |\
     tar -xvJC /opt/;
 
-ENV TOOLCHAIN_PREFIX=/opt/sparc64--glibc--stable-2025.08-1/bin/aarch64-buildroot-linux-gnu-
-ENV CMAKE_SYSROOT=/opt/sparc64--glibc--stable-2025.08-1/aarch64-buildroot-linux-gnu/sysroot
+ENV TOOLCHAIN_PREFIX=/opt/sparc64--glibc--stable-2025.08-1/bin/sparc64-buildroot-linux-gnu-
+ENV CMAKE_SYSROOT=/opt/sparc64--glibc--stable-2025.08-1/sparc64-buildroot-linux-gnu/sysroot
 
 # On the cross-compile hosts used for this job, the uid will be 1001, but it's
 # possible someone might want to run this container with a different uid, so
