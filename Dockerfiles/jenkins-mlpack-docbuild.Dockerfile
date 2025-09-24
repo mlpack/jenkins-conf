@@ -7,6 +7,8 @@ LABEL maintainer="ryan@ratml.org"
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 RUN apt-get update -qq && \
+    apt-get upgrade -yy && \
+    apt-get dist-upgrade -yy && \
     apt-get install -yy kramdown ruby-kramdown-parser-gfm ruby-rouge tidy w3c-linkchecker curl bzip2 gzip linkchecker sqlite3 ccache && \
     apt-get install -yy locales && \
     sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \

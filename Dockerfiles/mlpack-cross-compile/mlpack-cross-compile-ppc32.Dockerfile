@@ -15,6 +15,7 @@ RUN truncate -s0 /tmp/preseed.cfg; \
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
     bzip2 \
+    ccache \
     cmake \
     curl \
     gcc \

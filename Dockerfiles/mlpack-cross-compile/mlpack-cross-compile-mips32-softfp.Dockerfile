@@ -35,12 +35,24 @@ RUN apt-get update -qq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install the powerpc cross-compilation environment.
-RUN curl -Lk https://toolchains.bootlin.com/downloads/releases/toolchains/mips32/tarballs/mips32--glibc--stable-2024.02-1.tar.bz2 |\
-    tar -xvjC /opt/;
+# Manually build the toolchain based on the bootlin toolchain.
+RUN apt-get update -qq && \
+    apt-get install -y file make cmake g++ bison yacc bzip2 cpio gzip rsync bc patch && \
+    git clone https://github.com/bootlin/buildroot-toolchains.git buildroot && \
+    cd buildroot && \
+    git checkout toolchains.bootlin.com-2025.08.1 && \
+    wget http://toolchains.bootlin.com/downloads/releases/toolchains/mips32r5el/build_fragments/mips32r5el--glibc--stable-2025.08-1.defconfig && \
+    mv mips32r5el--glibc--stable-2025.08-1.defconfig .config && \
+    sed -i 's/^# BR2_MIPS_SOFT_FLOAT is not set/BR2_MIPS_SOFT_FLOAT=y/' .config && \
+    make olddefconfig && \
+    make && \
+    mv output/host /opt/mips32el-softfp--glibc--stable-2025.08-1 && \
+    cd ../ && \
+    rm -rf buildroot && \
+    rm -rf /var/lib/apt/lists/*;
 
-ENV TOOLCHAIN_PREFIX=/opt/mips32--glibc--stable-2024.02-1/bin/mips-buildroot-linux-gnu-
-ENV CMAKE_SYSROOT=/opt/mips32--glibc--stable-2024.02-1/mips-buildroot-linux-gnu/sysroot
+ENV TOOLCHAIN_PREFIX=/opt/mips32el-softfp--glibc--stable-2025.08-1/bin/mipsel-buildroot-linux-gnu-
+ENV CMAKE_SYSROOT=/opt/mips32el-softfp--glibc--stable-2025.08-1/mipsel-buildroot-linux-gnu/sysroot
 
 # On the cross-compile hosts used for this job, the uid will be 1001, but it's
 # possible someone might want to run this container with a different uid, so
