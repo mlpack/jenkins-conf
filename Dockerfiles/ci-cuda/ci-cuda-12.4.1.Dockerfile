@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.4.0-devel-ubuntu22.04
+FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
 
 LABEL maintainer="marcus@kurg.org"
 
@@ -27,7 +27,7 @@ RUN apt-get update -qq && \
     opencl-headers \
     clinfo \
     libclblas-dev \
-    && ln -s /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
+    && ln -s /usr/local/cuda-12.4/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
 
 RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
