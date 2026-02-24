@@ -53,6 +53,7 @@ find "$dir" \
     xargs -0 cpplint --extensions=hpp,cpp --output=junit --filter=\
 -legal/copyright,\
 -build/c++11,\
+-build/c++17,\
 -build/header_guard,\
 -build/include,\
 -build/include_order,\
