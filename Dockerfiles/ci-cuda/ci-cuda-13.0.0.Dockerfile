@@ -13,6 +13,10 @@ RUN truncate -s0 /tmp/preseed.cfg; \
     rm -f /etc/timezone /etc/localtime
 
 RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends wget gnupg ca-certificates && \
+    wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/lunarg.gpg && \
+    wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list https://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list && \
+    apt-get update -qq && \
     apt-get install -y --no-install-recommends \
     cmake \
     gcc \
@@ -27,6 +31,7 @@ RUN apt-get update -qq && \
     opencl-headers \
     clinfo \
     libclblas-dev \
+    vulkan-sdk \
     && ln -s /usr/local/cuda-13.0/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
 
 RUN mkdir -p /etc/OpenCL/vendors && \
@@ -43,4 +48,3 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 USER jenkins
 WORKDIR /home/jenkins
 CMD /bin/bash
-
