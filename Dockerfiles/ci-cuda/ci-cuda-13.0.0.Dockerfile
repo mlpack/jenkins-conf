@@ -31,6 +31,7 @@ RUN apt-get update -qq && \
     opencl-headers \
     clinfo \
     libclblas-dev \
+    libclblast-dev \
     vulkan-sdk \
     && ln -s /usr/local/cuda-13.0/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
 
