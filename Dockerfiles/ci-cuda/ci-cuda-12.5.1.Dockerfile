@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.5.1-devel-ubuntu24.04
+FROM nvidia/cuda:12.5.1-devel-ubuntu22.04
 
 LABEL maintainer="marcus.edel@fu-berlin.de"
 
@@ -13,6 +13,10 @@ RUN truncate -s0 /tmp/preseed.cfg; \
     rm -f /etc/timezone /etc/localtime
 
 RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends wget gnupg ca-certificates && \
+    wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/lunarg.gpg && \
+    wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list https://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list && \
+    apt-get update -qq && \
     apt-get install -y --no-install-recommends \
     cmake \
     gcc \
@@ -22,12 +26,13 @@ RUN apt-get update -qq && \
     libarmadillo-dev \
     build-essential \
     libclblas-dev \
-    nsight-compute \
+    nsight-compute-2026.1.1 \
     nvidia-opencl-dev \
     ocl-icd-libopencl1 \
     opencl-headers \
     clinfo \
     libclblas-dev \
+    vulkan-sdk \
     && ln -s /usr/local/cuda-11.2/targets/x86_64-linux/lib/libcudart.so /usr/lib/libcudart.so
 
 RUN mkdir -p /etc/OpenCL/vendors && \

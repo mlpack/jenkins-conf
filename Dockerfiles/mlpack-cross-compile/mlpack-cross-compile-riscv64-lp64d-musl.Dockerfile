@@ -36,12 +36,12 @@ RUN apt-get update -qq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install the powerpc cross-compilation environment.
-RUN curl -Lk https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--glibc--stable-2024.02-1.tar.bz2 |\
-    tar -xvjC /opt/;
+# Install the riscv64-lp64d cross-compilation environment.
+RUN curl -Lk https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64-lp64d/tarballs/riscv64-lp64d--musl--stable-2025.08-1.tar.xz |\
+    tar -xvJC /opt/;
 
-ENV TOOLCHAIN_PREFIX=/opt/powerpc-440fp--glibc--stable-2024.02-1/bin/powerpc-buildroot-linux-gnu-
-ENV CMAKE_SYSROOT=/opt/powerpc-440fp--glibc--stable-2024.02-1/powerpc-buildroot-linux-gnu/sysroot
+ENV TOOLCHAIN_PREFIX=/opt/riscv64-lp64d--musl--stable-2025.08-1/bin/riscv64-buildroot-linux-musl-
+ENV CMAKE_SYSROOT=/opt/riscv64-lp64d--musl--stable-2025.08-1/riscv64-buildroot-linux-musl/sysroot
 
 # On the cross-compile hosts used for this job, the uid will be 1001, but it's
 # possible someone might want to run this container with a different uid, so

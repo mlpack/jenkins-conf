@@ -30,6 +30,7 @@ RUN apt-get update -qq && \
     libcereal-dev \
     txt2man \
     wget \
+    patch \
     ca-certificates \
     openssh-client && \
     apt-get clean && \
